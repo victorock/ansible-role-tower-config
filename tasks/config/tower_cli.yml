@@ -1,0 +1,4 @@
+- name: "Generate tower_cli.cfg"
+  template:
+    src: "tower_cli.cfg.j2"
+    dest: "~/.tower_cli.cfg"

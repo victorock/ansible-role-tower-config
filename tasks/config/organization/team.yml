@@ -1,0 +1,16 @@
+---
+- name: "config.organization.team: Ensure state of team: [ {{ ansible_tower_config_organization_team.name }} ]"
+  tower_team:
+    tower_config_file: "~/.tower_cli.cfg"
+    name: "{{ ansible_tower_config_organization_team.name }}"
+    organization: "{{ ansible_tower_config_organization.name }}"
+    description: "{{ ansible_tower_config_organization_team.description | default(omit) }}"
+    state: "{{ ansible_tower_config_organization_team.state | default(omit) }}"
+
+- name: "config.organization.team: Ensure membership of team: [ {{ ansible_tower_config_organization_team.name }} ]"
+  when: ansible_tower_config_organization_team.members is sequence
+  include_tasks: "team/member.yml"
+  loop: "{{ ansible_tower_config_organization_team.members }}"
+  loop_control:
+    loop_var: ansible_tower_config_organization_team_member
+    label: "{{ ansible_tower_config_organization_team_member.name }}"

@@ -1,0 +1,38 @@
+- name: "config.organization.permission: Grant/Revoke permissions types to team"
+  block:
+
+    - name: "config.organization.permission: organization"
+      when: ansible_tower_config_organization_permission.organization is string
+      include_tasks: "permission/organization.yml"
+
+    - name: "config.organization.permission: credential"
+      when: ansible_tower_config_organization_permission.credential is string
+      include_tasks: "permission/credential.yml"
+
+    - name: "config.organization.permission: inventory"
+      when: ansible_tower_config_organization_permission.inventory is string
+      include_tasks: "permission/inventory.yml"
+
+    - name: "config.organization.permission: project"
+      when: ansible_tower_config_organization_permission.project is string
+      include_tasks: "permission/project.yml"
+
+    - name: "config.organization.permission: user"
+      when: ansible_tower_config_organization_permission.user is string
+      include_tasks: "permission/user.yml"
+
+    - name: "config.organization.permission: target_team"
+      when: ansible_tower_config_organization_permission.target_team is string
+      include_tasks: "permission/target_team.yml"
+
+    - name: "config.organization.permission: job_template"
+      when: ansible_tower_config_organization_permission.job_template is string
+      include_tasks: "permission/job_template.yml"
+
+    - name: "config.organization.permission: workflow"
+      when: ansible_tower_config_organization_permission.workflow is string
+      include_tasks: "permission/workflow.yml"
+
+  when:
+    - ansible_tower_config_organization_permission.type is string
+    - ansible_tower_config_organization_permission.team is string

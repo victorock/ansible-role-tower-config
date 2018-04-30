@@ -1,0 +1,19 @@
+- name: "organization.permission.job_template: Grant permissions to team: [ {{ ansible_tower_config_organization_permission.team }} ]"
+  when: "ansible_tower_config_organization_permission.state|default('present') == 'present'"
+  command: |
+  tower-cli role grant \
+  --team "{{ ansible_tower_config_organization_permission.team }}" \
+  --type "{{ ansible_tower_config_organization_permission.type }}" \
+  --job-template "{{ ansible_tower_config_organization_permission.job_template }}"
+  register: tower_cli_role_grant_job_template
+  changed_when: (tower_cli_role_grant_job_template.stdout|from_json).changed|bool
+
+- name: "organization.permission.job_template: Revoke permissions from team: [ {{ ansible_tower_config_organization_permission.team }} ]"
+  when: "ansible_tower_config_organization_permission.state|default('present') == 'absent'"
+  command: |
+  tower-cli role revoke \
+  --team "{{ ansible_tower_config_organization_permission.team }}" \
+  --type "{{ ansible_tower_config_organization_permission.type }}" \
+  --job-template "{{ ansible_tower_config_organization_permission.job_template }}"
+  register: tower_cli_role_revoke_job_template
+  changed_when: (tower_cli_role_revoke_job_template.stdout|from_json).changed|bool

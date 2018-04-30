@@ -1,0 +1,9 @@
+- name: "config.license: GET LICENSE"
+  command: tower-cli setting get LICENSE
+  register: tower_cli_setting_get_license
+  changed_when: false
+
+- name: "config.license: MODIFY LICENSE"
+  when: (tower_cli_setting_get_license.stdout|from_json).value.license_key != ansible_tower_config.license.license_key
+  command: tower-cli setting modify LICENSE "{{ ansible_tower_config.license }}"
+  register: tower_cli_setting_modify_license
