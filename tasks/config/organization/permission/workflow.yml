@@ -1,19 +1,19 @@
 - name: "organization.permission.workflow: Grant permissions to team: [ {{ ansible_tower_config_organization_permission.team }} ]"
   when: "ansible_tower_config_organization_permission.state|default('present') == 'present'"
   command: |
-  tower-cli role grant \
-  --team "{{ ansible_tower_config_organization_permission.team }}" \
-  --type "{{ ansible_tower_config_organization_permission.type }}" \
-  --workflow "{{ ansible_tower_config_organization_permission.workflow }}"
+    tower-cli role grant \
+    --team "{{ ansible_tower_config_organization_permission.team }}" \
+    --type "{{ ansible_tower_config_organization_permission.type }}" \
+    --workflow "{{ ansible_tower_config_organization_permission.workflow }}"
   register: tower_cli_role_grant_workflow
   changed_when: (tower_cli_role_grant_workflow.stdout|from_json).changed|bool
 
 - name: "organization.permission.workflow: Revoke permissions from team: [ {{ ansible_tower_config_organization_permission.team }} ]"
   when: "ansible_tower_config_organization_permission.state|default('present') == 'absent'"
   command: |
-  tower-cli role revoke \
-  --team "{{ ansible_tower_config_organization_permission.team }}" \
-  --type "{{ ansible_tower_config_organization_permission.type }}" \
-  --workflow "{{ ansible_tower_config_organization_permission.workflow }}"
+    tower-cli role revoke \
+    --team "{{ ansible_tower_config_organization_permission.team }}" \
+    --type "{{ ansible_tower_config_organization_permission.type }}" \
+    --workflow "{{ ansible_tower_config_organization_permission.workflow }}"
   register: tower_cli_role_revoke_workflow
   changed_when: (tower_cli_role_revoke_workflow.stdout|from_json).changed|bool

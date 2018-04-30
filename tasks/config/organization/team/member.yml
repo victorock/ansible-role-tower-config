@@ -1,17 +1,17 @@
 - name: "Associate team's member: [ {{ ansible_tower_config_organization_team_member.name }} ]"
   when: "ansible_tower_config_organization_team_member.state|default('present') == 'present'"
   command: |
-  tower-cli team associate \
-  --team "{{ ansible_tower_config_organization_team.name }}" \
-  --user "{{ ansible_tower_config_organization_team_member.name }}"
+    tower-cli team associate \
+    --team "{{ ansible_tower_config_organization_team.name }}" \
+    --user "{{ ansible_tower_config_organization_team_member.name }}"
   register: tower_cli_team_associate
   changed_when: (tower_cli_team_associate.stdout|from_json).changed|bool
 
 - name: "Disassociate team's member: [ {{ ansible_tower_config_organization_team_member.name }} ]"
   when: "ansible_tower_config_organization_team_member.state|default('present') == 'absent'"
   command: |
-  tower-cli team disassociate \
-  --team "{{ ansible_tower_config_organization_team.name }}" \
-  --user "{{ ansible_tower_config_organization_team_member.name }}"
+    tower-cli team disassociate \
+    --team "{{ ansible_tower_config_organization_team.name }}" \
+    --user "{{ ansible_tower_config_organization_team_member.name }}"
   register: tower_cli_team_disassociate
   changed_when: (tower_cli_team_disassociate.stdout|from_json).changed|bool
