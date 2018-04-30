@@ -1,6 +1,5 @@
 - name: "organization.inventory.source: Ensure state of inventory source: [ {{ ansible_tower_config_organization_inventory_source.name }} ]"
   tower_group:
-    tower_config_file: "~/tower_cli.cfg"
     name: "{{ ansible_tower_config_organization_inventory_source.name }}"
     credential: "{{ ansible_tower_config_organization_inventory_source.instance_filters | default(omit) }}"
     instance_filters: "{{ ansible_tower_config_organization_inventory_source.instance_filters | default(omit) }}"

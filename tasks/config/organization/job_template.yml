@@ -1,7 +1,6 @@
 ---
 - name: "config.organization: Ensure state of job_template: [ {{ ansible_tower_config_organization_job_template.name }} ]"
   tower_job_template:
-    tower_config_file: "~/.tower_cli.cfg"
     name: "{{ ansible_tower_config_organization_job_template.name }}"
     playbook: "{{ ansible_tower_config_organization_job_template.playbook }}"
     project:  "{{ ansible_tower_config_organization_job_template.project }}"

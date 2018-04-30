@@ -1,7 +1,6 @@
 ---
 - name: "config.organization.user: Ensure state of user: [ {{ ansible_tower_config_organization_user.name }} ]"
   tower_user:
-    tower_config_file: "~/.tower_cli.cfg"
     username: "{{ ansible_tower_config_organization_user.name }}"
     password: "{{ ansible_tower_config_organization_user.password }}"
     email: "{{ ansible_tower_config_organization_user.email }}"

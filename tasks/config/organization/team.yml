@@ -1,7 +1,6 @@
 ---
 - name: "config.organization.team: Ensure state of team: [ {{ ansible_tower_config_organization_team.name }} ]"
   tower_team:
-    tower_config_file: "~/.tower_cli.cfg"
     name: "{{ ansible_tower_config_organization_team.name }}"
     organization: "{{ ansible_tower_config_organization.name }}"
     description: "{{ ansible_tower_config_organization_team.description | default(omit) }}"

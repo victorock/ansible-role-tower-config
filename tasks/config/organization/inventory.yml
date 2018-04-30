@@ -1,6 +1,5 @@
 - name: "organization.inventory: Ensure state of inventory: [ {{ ansible_tower_config_organization_inventory }} ]"
   tower_inventory:
-    tower_config_file: "~/.tower_cli.cfg"
     name: "{{ ansible_tower_config_organization_inventory.name }}"
     organization:  "{{ ansible_tower_config_organization.name }}"
     description: "{{ ansible_tower_config_organization_inventory.description | default(omit) }}"
