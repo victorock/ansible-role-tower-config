@@ -1,6 +1,4 @@
-- name: "organization.permission-cli: Ensure permission of source : [ {{ ansible_tower_config_organization_inventory_source.name }} ]"
-  vars:
-    inventory_source: "{{ ansible_tower_config_organization_inventory_source }}"
-  command: "{{ lookup('template', 'source-cli.j2') }}"
+- name: "config.organization.permission-cli: Ensure permissions for role [ {{ ansible_tower_config_organization_permission.role }} ]"
+  command: "{{ lookup('template', 'permission-cli.j2') }}"
   register: tower_cli_role
   changed_when: (tower_cli_role.stdout|from_json).changed|bool
