@@ -1,4 +1,4 @@
-- name: "config: Process [ organization ]"
+- name: "config.organization: Process [ organization ]"
   when: ansible_tower_config_organization is mapping
   include_tasks: "organization/main.yml"
   vars:

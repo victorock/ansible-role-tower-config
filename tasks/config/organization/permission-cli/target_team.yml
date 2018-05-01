@@ -3,7 +3,7 @@
   command: |
     tower-cli role grant \
     --team "{{ ansible_tower_config_organization_permission.team }}" \
-    --type "{{ ansible_tower_config_organization_permission.type }}" \
+    --type "{{ ansible_tower_config_organization_permission.role }}" \
     --target-team "{{ ansible_tower_config_organization_permission.target_team }}"
   register: tower_cli_role_grant_target_team
   changed_when: (tower_cli_role_grant_target_team.stdout|from_json).changed|bool
@@ -13,7 +13,7 @@
   command: |
     tower-cli role revoke \
     --team "{{ ansible_tower_config_organization_permission.team }}" \
-    --type "{{ ansible_tower_config_organization_permission.type }}" \
+    --type "{{ ansible_tower_config_organization_permission.role }}" \
     --target-team "{{ ansible_tower_config_organization_permission.target_team }}"
   register: tower_cli_role_revoke_target_team
   changed_when: (tower_cli_role_revoke_target_team.stdout|from_json).changed|bool

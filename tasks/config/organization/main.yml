@@ -53,9 +53,17 @@
     loop_var: ansible_tower_config_organization_job_template
     label: "{{ ansible_tower_config_organization_job_template.name }}"
 
-- name: "config.organization: Process [ permissions ]"
+#- name: "config.organization: Process [ permissions ]"
+#  when: ansible_tower_config_organization.permissions is sequence
+#  include_tasks: "permission.yml"
+#  loop: "{{ ansible_tower_config_organization.permissions }}"
+#  loop_control:
+#    loop_var: ansible_tower_config_organization_permission
+#    label: "{{ ansible_tower_config_organization_permission.team }}"
+
+- name: "config.organization: Process [ permissions ] with tower-cli"
   when: ansible_tower_config_organization.permissions is sequence
-  include_tasks: "permission.yml"
+  include_tasks: "permission-cli.yml"
   loop: "{{ ansible_tower_config_organization.permissions }}"
   loop_control:
     loop_var: ansible_tower_config_organization_permission
