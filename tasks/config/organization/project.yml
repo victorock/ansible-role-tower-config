@@ -1,5 +1,5 @@
 ---
-- name: "config.organization.project: Ensure state of project: [ {{ ansible_tower_config_organization_project }} ]"
+- name: "config.organization.project: Ensure state of project: [ {{ ansible_tower_config_organization_project.name }} ]"
   tower_project:
     organization: "{{ ansible_tower_config_organization.name }}"
     name: "{{ ansible_tower_config_organization_project.name }}"

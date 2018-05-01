@@ -5,14 +5,6 @@
     description: "{{ ansible_tower_config_organization.description | default('Managed by Ansible') }}"
     state: "{{ ansible_tower_config_organization.state | default('present') }}"
 
-- name: "config.organization: Process [ teams ]"
-  when: ansible_tower_config_organization.teams is sequence
-  include_tasks: "team.yml"
-  loop: "{{ ansible_tower_config_organization.teams }}"
-  loop_control:
-    loop_var: ansible_tower_config_organization_team
-    label: "{{ ansible_tower_config_organization_team.name }}"
-
 - name: "config.organization: Process [ users ]"
   when: ansible_tower_config_organization.users is sequence
   include_tasks: "user.yml"
@@ -20,6 +12,14 @@
   loop_control:
     loop_var: ansible_tower_config_organization_user
     label: "{{ ansible_tower_config_organization_user.name }}"
+
+- name: "config.organization: Process [ teams ]"
+  when: ansible_tower_config_organization.teams is sequence
+  include_tasks: "team.yml"
+  loop: "{{ ansible_tower_config_organization.teams }}"
+  loop_control:
+    loop_var: ansible_tower_config_organization_team
+    label: "{{ ansible_tower_config_organization_team.name }}"
 
 - name: "config.organization: Process [ credentials ]"
   when: ansible_tower_config_organization.credentials is sequence

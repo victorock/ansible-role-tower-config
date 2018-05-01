@@ -6,6 +6,6 @@
     email: "{{ ansible_tower_config_organization_user.email }}"
     first_name: "{{ ansible_tower_config_organization_user.first_name }}"
     last_name: "{{ ansible_tower_config_organization_user.last_name }}"
-    superuser: "{{ ansible_tower_config_organization_user.superuser | default(omit) }}"
-    auditor: "{{ ansible_tower_config_organization_user.auditor | default(omit) }}"
+    superuser: "{{ ansible_tower_config_organization_user.superuser|bool | default(omit) }}"
+    auditor: "{{ ansible_tower_config_organization_user.auditor|bool | default(omit) }}"
     state: "{{ ansible_tower_config_organization_user.state | default(omit) }}"
