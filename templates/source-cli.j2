@@ -1,60 +1,60 @@
-tower-cli -f json \
-inventory_source \
+tower-cli
+inventory_source
 {%- if ansible_tower_config_organization_inventory_source.state|default('present') == 'present' -%}
-create \
+create
 {%- elif ansible_tower_config_organization_inventory_source.state|default('present') == 'absent' -%}
-delete \
+delete
 {%- elif ansible_tower_config_organization_inventory_source.state|default('present') == 'update' -%}
-modify \
+modify
 {% endif %}
 {%- if ansible_tower_config_organization_inventory_source.force_on_exists|default(true) -%}
---force-on-exists \
+--force-on-exists
 {% endif %}
 {%- if ansible_tower_config_organization_inventory_source.description is defined -%}
---description {{ ansible_tower_config_organization_inventory_source.description | quote }} \
+--description {{ ansible_tower_config_organization_inventory_source.description | quote }}
 {% endif %}
 {%- if ansible_tower_config_organization_inventory_source.credential is defined -%}
---credential {{ ansible_tower_config_organization_inventory_source.credential | quote }} \
+--credential {{ ansible_tower_config_organization_inventory_source.credential | quote }}
 {% endif %}
 {%- if ansible_tower_config_organization_inventory_source.source_vars is defined -%}
---source-vars {{ ansible_tower_config_organization_inventory_source.source_vars | quote }} \
+--source-vars {{ ansible_tower_config_organization_inventory_source.source_vars | quote }}
 {% endif %}
 {%- if ansible_tower_config_organization_inventory_source.timeout is defined -%}
---timeout {{ ansible_tower_config_organization_inventory_source.timeout | quote }} \
+--timeout {{ ansible_tower_config_organization_inventory_source.timeout | quote }}
 {% endif %}
 {%- if ansible_tower_config_organization_inventory_source.source_project is defined -%}
---source-project {{ ansible_tower_config_organization_inventory_source.source_project | quote }} \
+--source-project {{ ansible_tower_config_organization_inventory_source.source_project | quote }}
 {% endif %}
 {%- if ansible_tower_config_organization_inventory_source.source_path is defined -%}
---source-path {{ ansible_tower_config_organization_inventory_source.source_path | quote }} \
+--source-path {{ ansible_tower_config_organization_inventory_source.source_path | quote }}
 {% endif %}
 {%- if ansible_tower_config_organization_inventory_source.update_on_project_update is defined -%}
---update-on-project-update {{ ansible_tower_config_organization_inventory_source.update_on_project_update | quote }} \
+--update-on-project-update {{ ansible_tower_config_organization_inventory_source.update_on_project_update | quote }}
 {% endif %}
 {%- if ansible_tower_config_organization_inventory_source.source_regions is defined -%}
---source-regions {{ ansible_tower_config_organization_inventory_source.source_regions | quote }} \
+--source-regions {{ ansible_tower_config_organization_inventory_source.source_regions | quote }}
 {% endif %}
 {%- if ansible_tower_config_organization_inventory_source.instance_filters is defined -%}
---instance-filters {{ ansible_tower_config_organization_inventory_source.instance_filters | quote }} \
+--instance-filters {{ ansible_tower_config_organization_inventory_source.instance_filters | quote }}
 {% endif %}
 {%- if ansible_tower_config_organization_inventory_source.group_by is defined -%}
---group-by {{ ansible_tower_config_organization_inventory_source.group_by | quote }} \
+--group-by {{ ansible_tower_config_organization_inventory_source.group_by | quote }}
 {% endif %}
 {%- if ansible_tower_config_organization_inventory_source.source_script is defined -%}
---source-script {{ ansible_tower_config_organization_inventory_source.source_script | quote }} \
+--source-script {{ ansible_tower_config_organization_inventory_source.source_script | quote }}
 {% endif %}
 {%- if ansible_tower_config_organization_inventory_source.overwrite is defined -%}
---overwrite {{ ansible_tower_config_organization_inventory_source.overwrite | quote }} \
+--overwrite {{ ansible_tower_config_organization_inventory_source.overwrite | quote }}
 {% endif %}
 {%- if ansible_tower_config_organization_inventory_source.overwrite_vars is defined -%}
---overwrite-vars {{ ansible_tower_config_organization_inventory_source.overwrite_vars | quote }} \
+--overwrite-vars {{ ansible_tower_config_organization_inventory_source.overwrite_vars | quote }}
 {% endif %}
 {%- if ansible_tower_config_organization_inventory_source.update_on_launch is defined -%}
---update-on-launch {{ ansible_tower_config_organization_inventory_source.update_on_launch | quote }} \
+--update-on-launch {{ ansible_tower_config_organization_inventory_source.update_on_launch | quote }}
 {% endif %}
 {%- if ansible_tower_config_organization_inventory_source.update_cache_timeout is defined -%}
---update-cache-timeout {{ ansible_tower_config_organization_inventory_source.update_cache_timeout | quote }} \
+--update-cache-timeout {{ ansible_tower_config_organization_inventory_source.update_cache_timeout | quote }}
 {% endif %}
---name {{ ansible_tower_config_organization_inventory_source.name | quote }} \
---inventory {{ ansible_tower_config_organization_inventory.name | quote }} \
---source {{ ansible_tower_config_organization_inventory_source.source | quote }} \
+--name {{ ansible_tower_config_organization_inventory_source.name | quote }}
+--inventory {{ ansible_tower_config_organization_inventory.name | quote }}
+--source {{ ansible_tower_config_organization_inventory_source.source | quote }}
