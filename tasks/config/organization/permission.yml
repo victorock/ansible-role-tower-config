@@ -1,7 +1,7 @@
-- name: "config.organization.permission: Grant/Revoke permissions roles"
+- name: "config.organization.permission: Ensure permissions for role [ {{ ansible_tower_config_organization_permission.role }} ]"
   tower_role:
     role: "{{ ansible_tower_config_organization_permission.role }}"
-    team: "{{ ansible_tower_config_organization_permission.credential | default(omit) }}"
+    team: "{{ ansible_tower_config_organization_permission.team | default(omit) }}"
     user: "{{ ansible_tower_config_organization_permission.user | default(omit) }}"
     credential: "{{ ansible_tower_config_organization_permission.credential | default(omit) }}"
     inventory: "{{ ansible_tower_config_organization_permission.inventory | default(omit) }}"
