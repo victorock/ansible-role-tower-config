@@ -4,8 +4,8 @@
 - name: "Configure Tower-CLI"
   import_tasks: "config/tower_cli.yml"
 
-- name: "Configure Setting"
-  import_tasks: "config/setting.yml"
+- name: "Configure Setting with tower-cli"
+  import_tasks: "config/setting-cli.yml"
   when: ansible_tower_config.setting is mapping
 
 - name: "Configure Organization"

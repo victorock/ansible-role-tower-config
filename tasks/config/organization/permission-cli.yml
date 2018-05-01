@@ -1,4 +1,2 @@
 - name: "config.organization.permission-cli: Ensure permissions for role [ {{ ansible_tower_config_organization_permission.role }} ]"
   command: "{{ lookup('template', 'permission-cli.j2') }}"
-  register: tower_cli_role
-  changed_when: (tower_cli_role.stdout|from_json).changed|bool
