@@ -1,38 +1,6 @@
-- name: "config.organization.permission: Grant/Revoke permissions types to team"
-  block:
-
-    - name: "config.organization.permission: organization"
-      when: ansible_tower_config_organization_permission.organization is string
-      include_tasks: "permission-cli/organization.yml"
-
-    - name: "config.organization.permission: credential"
-      when: ansible_tower_config_organization_permission.credential is string
-      include_tasks: "permission-cli/credential.yml"
-
-    - name: "config.organization.permission: inventory"
-      when: ansible_tower_config_organization_permission.inventory is string
-      include_tasks: "permission-cli/inventory.yml"
-
-    - name: "config.organization.permission: project"
-      when: ansible_tower_config_organization_permission.project is string
-      include_tasks: "permission-cli/project.yml"
-
-    - name: "config.organization.permission: user"
-      when: ansible_tower_config_organization_permission.user is string
-      include_tasks: "permission-cli/user.yml"
-
-    - name: "config.organization.permission: target_team"
-      when: ansible_tower_config_organization_permission.target_team is string
-      include_tasks: "permission-cli/target_team.yml"
-
-    - name: "config.organization.permission: job_template"
-      when: ansible_tower_config_organization_permission.job_template is string
-      include_tasks: "permission-cli/job_template.yml"
-
-    - name: "config.organization.permission: workflow"
-      when: ansible_tower_config_organization_permission.workflow is string
-      include_tasks: "permission-cli/workflow.yml"
-
-  when:
-    - ansible_tower_config_organization_permission.type is string
-    - ansible_tower_config_organization_permission.team is string
+- name: "organization.permission-cli: Ensure permission of source : [ {{ ansible_tower_config_organization_inventory_source.name }} ]"
+  vars:
+    inventory_source: "{{ ansible_tower_config_organization_inventory_source }}"
+  command: "{{ lookup('template', 'source-cli.j2') }}"
+  register: tower_cli_role
+  changed_when: (tower_cli_role.stdout|from_json).changed|bool

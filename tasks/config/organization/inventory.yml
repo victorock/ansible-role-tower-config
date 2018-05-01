@@ -5,9 +5,17 @@
     description: "{{ ansible_tower_config_organization_inventory.description | default(omit) }}"
     state: "{{ ansible_tower_config_organization_inventory.state | default(omit) }}"
 
-- name: "organizations.inventory: Process [ sources ]"
+#- name: "organizations.inventory: Process [ sources ]"
+#  when: ansible_tower_config_organization_inventory.sources is sequence
+#  include_tasks: "inventory/source.yml"
+#  loop: "{{ ansible_tower_config_organization_inventory.sources }}"
+#  loop_control:
+#      loop_var: ansible_tower_config_organization_inventory_source
+#      label: "{{ ansible_tower_config_organization_inventory_source.name }}"
+
+- name: "organizations.inventory: Process [ sources ] with tower-cli"
   when: ansible_tower_config_organization_inventory.sources is sequence
-  include_tasks: "inventory/source.yml"
+  include_tasks: "inventory-cli/source.yml"
   loop: "{{ ansible_tower_config_organization_inventory.sources }}"
   loop_control:
       loop_var: ansible_tower_config_organization_inventory_source
