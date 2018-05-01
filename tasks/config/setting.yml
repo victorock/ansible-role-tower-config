@@ -1,0 +1,2 @@
+- name: "config.setting: Process [ license ]"
+  import_tasks: "setting/license.yml"

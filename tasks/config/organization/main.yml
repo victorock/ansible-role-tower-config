@@ -2,7 +2,7 @@
 - name: "config.organization: Ensure state of organization: [ {{ ansible_tower_config_organization.name }} ]"
   tower_organization:
     name: "{{ ansible_tower_config_organization.name }}"
-    description: "{{ ansible_tower_config_organization.description | default('Managed by Ansible') }}"
+    description: "{{ ansible_tower_config_organization.description | default(omit) }}"
     state: "{{ ansible_tower_config_organization.state | default('present') }}"
 
 - name: "config.organization: Process [ users ]"

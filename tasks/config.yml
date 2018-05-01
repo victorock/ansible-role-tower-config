@@ -4,9 +4,9 @@
 - name: "Configure Tower-CLI"
   import_tasks: "config/tower_cli.yml"
 
-- name: "Configure License"
-  import_tasks: "config/license.yml"
-  when: ansible_tower_config.license is mapping
+- name: "Configure Setting"
+  import_tasks: "setting/setting.yml"
+  when: ansible_tower_config.setting is mapping
 
 - name: "Configure Organization"
   import_tasks: "config/organization.yml"
