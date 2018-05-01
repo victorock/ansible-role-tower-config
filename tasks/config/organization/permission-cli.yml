@@ -3,35 +3,35 @@
 
     - name: "config.organization.permission: organization"
       when: ansible_tower_config_organization_permission.organization is string
-      include_tasks: "permission/organization.yml"
+      include_tasks: "permission-cli/organization.yml"
 
     - name: "config.organization.permission: credential"
       when: ansible_tower_config_organization_permission.credential is string
-      include_tasks: "permission/credential.yml"
+      include_tasks: "permission-cli/credential.yml"
 
     - name: "config.organization.permission: inventory"
       when: ansible_tower_config_organization_permission.inventory is string
-      include_tasks: "permission/inventory.yml"
+      include_tasks: "permission-cli/inventory.yml"
 
     - name: "config.organization.permission: project"
       when: ansible_tower_config_organization_permission.project is string
-      include_tasks: "permission/project.yml"
+      include_tasks: "permission-cli/project.yml"
 
     - name: "config.organization.permission: user"
       when: ansible_tower_config_organization_permission.user is string
-      include_tasks: "permission/user.yml"
+      include_tasks: "permission-cli/user.yml"
 
     - name: "config.organization.permission: target_team"
       when: ansible_tower_config_organization_permission.target_team is string
-      include_tasks: "permission/target_team.yml"
+      include_tasks: "permission-cli/target_team.yml"
 
     - name: "config.organization.permission: job_template"
       when: ansible_tower_config_organization_permission.job_template is string
-      include_tasks: "permission/job_template.yml"
+      include_tasks: "permission-cli/job_template.yml"
 
     - name: "config.organization.permission: workflow"
       when: ansible_tower_config_organization_permission.workflow is string
-      include_tasks: "permission/workflow.yml"
+      include_tasks: "permission-cli/workflow.yml"
 
   when:
     - ansible_tower_config_organization_permission.type is string
