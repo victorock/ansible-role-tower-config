@@ -5,6 +5,7 @@
     description: "{{ ansible_tower_config_organization_inventory.description | default(omit) }}"
     state: "{{ ansible_tower_config_organization_inventory.state | default(omit) }}"
 
+## Do not cover functionality: sources from project
 #- name: "organizations.inventory: Process [ sources ]"
 #  when: ansible_tower_config_organization_inventory.sources is sequence
 #  include_tasks: "inventory/source.yml"
