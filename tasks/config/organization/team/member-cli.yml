@@ -1,5 +1,5 @@
 - name: "config.team.member-cli: Ensure membership for [ {{ ansible_tower_config_organization_team.name }}:{{ ansible_tower_config_organization_team_member.name }} ]"
-  command: "{{ lookup('template', 'member-cli.j2') }}"
+  command: "./{{ lookup('template', 'member-cli.j2') }}"
   args:
     chdir: "~/venv/awx/bin"
   register: tower_cli_team

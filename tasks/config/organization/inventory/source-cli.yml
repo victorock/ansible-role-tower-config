@@ -1,5 +1,5 @@
 - name: "organization.inventory.source-cli: Ensure state of source : [ {{ ansible_tower_config_organization_inventory_source.name }} ]"
-  command: "{{ lookup('template', 'source-cli.j2') }}"
+  command: "./{{ lookup('template', 'source-cli.j2') }}"
   args:
     chdir: "~/venv/awx/bin"
   register: tower_cli_inventory_source
