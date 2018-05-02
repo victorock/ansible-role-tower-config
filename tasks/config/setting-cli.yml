@@ -1,2 +1,2 @@
 - name: "config.setting-cli: Process [ license ]"
-  include_tasks: "setting-cli/license.yml"
+  include_tasks: "setting/license-cli.yml"

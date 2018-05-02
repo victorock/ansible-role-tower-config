@@ -1,5 +1,5 @@
 - name: "config.organization.permission-cli: Ensure permissions for role [ {{ ansible_tower_config_organization_permission.role }} ]"
   command: "{{ lookup('template', 'permission-cli.j2') }}"
   args:
-    chdir: "~/venv/awx"
+    chdir: "~/venv/awx/bin"
   register: tower_cli_permission
