@@ -1,8 +1,4 @@
-dependencies:
-  - role: geerlingguy.pip
-    pip_install_packages:
-      - name: ansible-tower-cli
-        virtualenv: "/var/lib/venv/awx"
+dependencies: []
 
 galaxy_info:
   author: Victor da Costa
