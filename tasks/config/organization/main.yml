@@ -53,6 +53,7 @@
     loop_var: ansible_tower_config_organization_job_template
     label: "{{ ansible_tower_config_organization_job_template.name }}"
 
+### Buggy module
 #- name: "config.organization: Process [ permissions ]"
 #  when: ansible_tower_config_organization.permissions is sequence
 #  include_tasks: "permission.yml"

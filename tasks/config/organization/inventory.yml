@@ -13,9 +13,10 @@
 #      loop_var: ansible_tower_config_organization_inventory_source
 #      label: "{{ ansible_tower_config_organization_inventory_source.name }}"
 
+## Functionality not available in the module today
 - name: "organizations.inventory: Process [ sources ] with tower-cli"
   when: ansible_tower_config_organization_inventory.sources is sequence
-  include_tasks: "inventory-cli/source.yml"
+  include_tasks: "inventory/source-cli.yml"
   loop: "{{ ansible_tower_config_organization_inventory.sources }}"
   loop_control:
       loop_var: ansible_tower_config_organization_inventory_source

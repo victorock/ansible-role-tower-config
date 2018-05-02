@@ -1,2 +1,4 @@
 ---
 - import_tasks: config.yml
+  run_once: yes
+  delegate_to: "{{ ansible_play_hosts[0] }}"
