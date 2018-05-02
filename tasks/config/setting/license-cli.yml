@@ -1,13 +1,9 @@
 - name: "config.setting-cli.license: GET LICENSE"
-  command: ./tower-cli setting get LICENSE
-  args:
-    chdir: "~/venv/awx/bin"
+  command: tower-cli setting get LICENSE
   register: tower_cli_setting_get_license
   changed_when: false
 
 - name: "config.setting-cli.license: MODIFY LICENSE"
-  when: (tower_cli_setting_get_license.stdout|from_json).value.license_key|default('') != ansible_tower_config.setting.license.license_key
-  command: ./tower-cli setting modify LICENSE "{{ ansible_tower_config.setting.license }}"
-  args:
-    chdir: "~/venv/awx/bin"
+  when: (tower_cli_setting_get_license.stdout|from_json).value.license_key|default('none') != ansible_tower_config.setting.license.license_key
+  shell: tower-cli setting modify LICENSE {{ ansible_tower_config.setting.license | from_yaml | to_json | quote  }}
   register: tower_cli_setting_modify_license
