@@ -1,5 +1,5 @@
 tower-cli
-member
+team
 {% if ansible_tower_config_organization_team.state|default('present') == 'present' %}
 associate
 {% elif ansible_tower_config_organization_team.state|default('present') == 'absent' %}
