@@ -17,7 +17,7 @@
 - name: "organizations.inventory: Process [ sources ] with tower-cli"
   when: ansible_tower_config_organization_inventory.sources is defined
   include_tasks: "inventory/source-cli.yml"
-  loop: "{{ ansible_tower_config_organization_inventory.sources }}"
+  loop: "{{ ansible_tower_config_organization_inventory.sources | default([]) }}"
   loop_control:
       loop_var: ansible_tower_config_organization_inventory_source
       label: "{{ ansible_tower_config_organization_inventory_source.name }}"

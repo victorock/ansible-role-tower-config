@@ -1,9 +1,9 @@
 - name: "config.organization: Process [ organization ]"
-  when: ansible_tower_config_organization is mapping
+  when: ansible_tower_config_organization is defined
   include_tasks: "organization/main.yml"
   vars:
     ansible_tower_config_organization: "{{ ansible_tower_config_organization_dict.value | default({}) }}"
-  with_dict: "{{ ansible_tower_config.organization }}"
+  with_dict: "{{ ansible_tower_config.organization | default({}) }}"
   loop_control:
     loop_var: ansible_tower_config_organization_dict
     label: "{{ ansible_tower_config_organization_dict.key }}"
