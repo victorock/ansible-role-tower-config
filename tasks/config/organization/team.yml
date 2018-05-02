@@ -8,7 +8,7 @@
 
 ## Functionality not available in the module today
 - name: "config.organization.team: Ensure membership of team: [ {{ ansible_tower_config_organization_team.name }} ] with tower-cli"
-  when: ansible_tower_config_organization_team.members is sequence
+  when: ansible_tower_config_organization_team.members is defined
   include_tasks: "team/member-cli.yml"
   loop: "{{ ansible_tower_config_organization_team.members }}"
   loop_control:

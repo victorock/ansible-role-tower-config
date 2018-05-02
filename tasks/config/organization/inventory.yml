@@ -15,7 +15,7 @@
 
 ## Functionality not available in the module today
 - name: "organizations.inventory: Process [ sources ] with tower-cli"
-  when: ansible_tower_config_organization_inventory.sources is sequence
+  when: ansible_tower_config_organization_inventory.sources is defined
   include_tasks: "inventory/source-cli.yml"
   loop: "{{ ansible_tower_config_organization_inventory.sources }}"
   loop_control:
