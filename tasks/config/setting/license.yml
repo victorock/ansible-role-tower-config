@@ -1,4 +1,4 @@
-- name: "config.setting.license: ADD LICENSE"
+- name: "config.setting.license: Ensure LICENSE"
   uri:
     url: "{{ ansible_tower_config.host }}"
     user: "{{ ansible_tower_config.username }}"
@@ -8,6 +8,6 @@
       Content-Type: "application/json"
       Accept: "application/json"
     method: POST
-    body: "{{ ansible_tower_config.setting.license | combine({"eula_accepted":"true"}) | from_yaml | to_json }}"
+    body: "{{ ansible_tower_config.setting.license | combine({"eula_accepted":"true"}) }}"
     body_format: "{{ ansible_tower_config.format }}"
   register: config_setting_license
