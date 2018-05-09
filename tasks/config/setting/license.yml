@@ -8,6 +8,6 @@
       Content-Type: "application/json"
       Accept: "application/json"
     method: POST
-    body: "{{ ansible_tower_config.setting.license | combine({"eula_accepted":"true"}) }}"
+    body: "{{ ansible_tower_config.setting.license | combine({'eula_accepted':'true'}) }}"
     body_format: "{{ ansible_tower_config.format }}"
   register: config_setting_license
