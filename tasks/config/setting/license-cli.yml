@@ -1,3 +1,13 @@
-- name: "config.setting-cli.license: MODIFY LICENSE"
-  shell: tower-cli setting modify LICENSE {{ ansible_tower_config.setting.license | from_yaml | to_json | quote  }}
-  register: tower_cli_setting_modify_license
+- name: "config.setting.license: ADD LICENSE"
+  uri:
+    url: "{{ ansible_tower_config.host }}"
+    method: POST
+    body: "{{ ansible_tower_config.setting.license | combine({"eula_accepted":"true"}) | from_yaml | to_json }}"
+    body_format: "{{ ansible_tower_config.format }}"
+    headers:
+      Content-Type: "application/json"
+      Accept: "application/json"
+    user: "{{ ansible_tower_config.username }}"
+    password: "{{ ansible_tower_config.password }}"
+    validate_certs: "{{ ansible_tower_config.verify_ssl|bool }}"
+  register: config_setting_license

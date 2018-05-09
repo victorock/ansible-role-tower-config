@@ -1,5 +1,5 @@
 __ansible_tower_config:
-  host: https://10.42.0.42
+  host: https://localhost
   username: admin
   password: toweradmin
   verify_ssl: true
