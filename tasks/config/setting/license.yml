@@ -1,13 +1,13 @@
 - name: "config.setting.license: ADD LICENSE"
   uri:
     url: "{{ ansible_tower_config.host }}"
-    method: POST
-    body: "{{ ansible_tower_config.setting.license | combine({"eula_accepted":"true"}) | from_yaml | to_json }}"
-    body_format: "{{ ansible_tower_config.format }}"
-    headers:
-      Content-Type: "application/json"
-      Accept: "application/json"
     user: "{{ ansible_tower_config.username }}"
     password: "{{ ansible_tower_config.password }}"
     validate_certs: "{{ ansible_tower_config.verify_ssl|bool }}"
+    headers:
+      Content-Type: "application/json"
+      Accept: "application/json"
+    method: POST
+    body: "{{ ansible_tower_config.setting.license | combine({"eula_accepted":"true"}) | from_yaml | to_json }}"
+    body_format: "{{ ansible_tower_config.format }}"
   register: config_setting_license
