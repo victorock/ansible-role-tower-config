@@ -22,5 +22,6 @@
     forks: "{{ ansible_tower_config_organization_job_template.forks|int | default(omit) }}"
     host_config_key: "{{ ansible_tower_config_organization_job_template.host_config_key | default(omit) }}"
     limit: "{{ ansible_tower_config_organization_job_template.limit | default(omit) }}"
+#    ask_limit_on_launch: "{{ ansible_tower_config_organization_job_template.ask_limit_on_launch | default(omit) }}"
     verbosity: "{{ ansible_tower_config_organization_job_template.verbosity | default(omit) }}"
     state: "{{ ansible_tower_config_organization_job_template.state | default(omit) }}"
