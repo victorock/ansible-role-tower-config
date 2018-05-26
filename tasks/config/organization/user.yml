@@ -1,17 +1,18 @@
 ---
 - name: "config.organization.user: Ensure state of user: [ {{ ansible_tower_config_organization_user.name }} ]"
   tower_user:
-    username: "{{ ansible_tower_config_organization_user.name }}"
-    password: "{{ ansible_tower_config_organization_user.password }}"
-    email: "{{ ansible_tower_config_organization_user.email }}"
+    username:   "{{ ansible_tower_config_organization_user.name       }}"
+    password:   "{{ ansible_tower_config_organization_user.password   }}"
+    email:      "{{ ansible_tower_config_organization_user.email      }}"
     first_name: "{{ ansible_tower_config_organization_user.first_name }}"
-    last_name: "{{ ansible_tower_config_organization_user.last_name }}"
-    superuser: "{{ ansible_tower_config_organization_user.superuser|bool | default(omit) }}"
-    auditor: "{{ ansible_tower_config_organization_user.auditor|bool | default(omit) }}"
-    state: "{{ ansible_tower_config_organization_user.state | default(omit) }}"
+    last_name:  "{{ ansible_tower_config_organization_user.last_name  }}"
+    superuser:  "{{ ansible_tower_config_organization_user.superuser|bool | default(omit) }}"
+    auditor:    "{{ ansible_tower_config_organization_user.auditor|bool   | default(omit) }}"
+    state:      "{{ ansible_tower_config_organization_user.state          | default(omit) }}"
 
 - name: "config.organization.permission: Ensure membership in Organization for user: [ {{ ansible_tower_config_organization_user.name }} ]"
   tower_role:
+    user:         "{{ ansible_tower_config_organization_user.name }}"
     organization: "{{ ansible_tower_config_organization.name }}"
-    role: "member"
-    state: "present"
+    role:         "member"
+    state:        "present"
