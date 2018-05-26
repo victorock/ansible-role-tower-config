@@ -9,3 +9,9 @@
     superuser: "{{ ansible_tower_config_organization_user.superuser|bool | default(omit) }}"
     auditor: "{{ ansible_tower_config_organization_user.auditor|bool | default(omit) }}"
     state: "{{ ansible_tower_config_organization_user.state | default(omit) }}"
+
+- name: "config.organization.permission: Ensure membership in Organization for user: [ {{ ansible_tower_config_organization_user.name }} ]"
+  tower_role:
+    organization: "{{ ansible_tower_config_organization.name }}"
+    role: "member"
+    state: "present"
