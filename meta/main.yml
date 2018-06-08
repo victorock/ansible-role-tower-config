@@ -1,0 +1,14 @@
+dependencies: []
+
+galaxy_info:
+  author: Victor da Costa
+  description: Configure Ansible Tower by Red Hat
+  license: GPLv3
+  min_ansible_version: 2.4
+  platforms:
+  - name: EL
+    versions:
+    - 7
+  galaxy_tags:
+    - ansible
+    - tower

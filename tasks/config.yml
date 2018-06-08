@@ -1,0 +1,13 @@
+- name: "Configure Variables"
+  import_tasks: "config/variables.yml"
+
+- name: "Configure Tower-CLI"
+  import_tasks: "config/tower_cli.yml"
+
+- name: "Configure Setting"
+  import_tasks: "config/setting.yml"
+  when: ansible_tower_config.setting is mapping
+
+- name: "Configure Organization"
+  import_tasks: "config/organization.yml"
+  when: ansible_tower_config.organization is mapping

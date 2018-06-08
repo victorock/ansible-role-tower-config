@@ -1,0 +1,16 @@
+---
+- name: "config.organization.project: Ensure state of project: [ {{ ansible_tower_config_organization_project.name }} ]"
+  tower_project:
+    name: "{{ ansible_tower_config_organization_project.name }}"
+    organization: "{{ ansible_tower_config_organization.name | default(omit) }}"
+    description: "{{ ansible_tower_config_organization_project.description | default(omit) }}"
+# https://github.com/ansible/ansible/issues/32274
+#    scm_credential: "{{ ansible_tower_config_organization_project.scm_credential | default(omit) }}"
+    scm_credential: "{{ ansible_tower_config_organization_project.scm_credential }}"
+    scm_type: "{{ ansible_tower_config_organization_project.scm_type | default(omit) }}"
+    scm_branch: "{{ ansible_tower_config_organization_project.scm_branch | default(omit) }}"
+    scm_update_on_launch: "{{ ansible_tower_config_organization_project.scm_update_on_launch | default(omit) }}"
+    scm_delete_on_update: "{{ ansible_tower_config_organization_project.scm_delete_on_update | default(omit) }}"
+    scm_clean:  "{{ ansible_tower_config_organization_project.scm_clean | default(omit) }}"
+    scm_url: "{{ ansible_tower_config_organization_project.scm_url | default(omit) }}"
+    state: "{{ ansible_tower_config_organization_project.state | default(omit) }}"

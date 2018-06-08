@@ -1,0 +1,13 @@
+- name: "config.setting.license: Ensure state of LICENSE"
+  uri:
+    url: "https://{{ ansible_tower_config.host }}/api/v1/config/"
+    user: "{{ ansible_tower_config.username }}"
+    password: "{{ ansible_tower_config.password }}"
+    validate_certs: "{{ ansible_tower_config.verify_ssl|bool }}"
+    headers:
+      Content-Type: "application/json"
+      Accept: "application/json"
+    method: POST
+    body: '{{ ansible_tower_config.setting.license | combine({"eula_accepted":"true"}) }}'
+    body_format: "{{ ansible_tower_config.format }}"
+  register: reg_config_setting_license

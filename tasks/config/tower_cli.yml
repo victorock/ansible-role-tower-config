@@ -1,0 +1,5 @@
+- name: "config.tower_cli: Generate tower_cli.cfg"
+  template:
+    src: "tower_cli.cfg.j2"
+    dest: "~/.tower_cli.cfg"
+    mode: 0600

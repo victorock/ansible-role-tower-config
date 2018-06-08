@@ -1,0 +1,8 @@
+__ansible_tower_config:
+  host: https://localhost
+  username: admin
+  password: toweradmin
+  verify_ssl: true
+  format: json
+  awx_venv: /var/lib/awx/venv/awx
+  ansible_venv: /var/lib/awx/venv/ansible

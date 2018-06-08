@@ -1,0 +1,35 @@
+tower-cli
+role
+{% if ansible_tower_config_organization_permission.state|default('present') == 'present' %}
+grant
+{% elif ansible_tower_config_organization_permission.state|default('present') == 'absent' %}
+revoke
+{% endif %}
+{% if ansible_tower_config_organization_permission.user is defined %}
+--user {{ ansible_tower_config_organization_permission.user | quote }}
+{% endif %}
+{% if ansible_tower_config_organization_permission.team is defined %}
+--team {{ ansible_tower_config_organization_permission.team | quote }}
+{% endif %}
+{% if ansible_tower_config_organization_permission.target_team is defined %}
+--target-team {{ ansible_tower_config_organization_permission.target_team | quote }}
+{% endif %}
+{% if ansible_tower_config_organization_permission.inventory is defined %}
+--inventory {{ ansible_tower_config_organization_permission.inventory | quote }}
+{% endif %}
+{% if ansible_tower_config_organization_permission.job_template is defined %}
+--job-template {{ ansible_tower_config_organization_permission.job_template | quote }}
+{% endif %}
+{% if ansible_tower_config_organization_permission.credential is defined %}
+--credential {{ ansible_tower_config_organization_permission.credential | quote }}
+{% endif %}
+{% if ansible_tower_config_organization_permission.organization is defined %}
+--organization {{ ansible_tower_config_organization_permission.organization | quote }}
+{% endif %}
+{% if ansible_tower_config_organization_permission.project is defined %}
+--project {{ ansible_tower_config_organization_permission.project | quote }}
+{% endif %}
+{% if ansible_tower_config_organization_permission.workflow is defined %}
+--workflow {{ ansible_tower_config_organization_permission.workflow | quote }}
+{% endif %}
+--type {{ ansible_tower_config_organization_permission.role | quote }}

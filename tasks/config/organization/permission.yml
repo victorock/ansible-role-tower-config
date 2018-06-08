@@ -1,0 +1,12 @@
+- name: "config.organization.permission: Ensure permissions for role [ {{ ansible_tower_config_organization_permission.role }} ]"
+  tower_role:
+    role: "{{ ansible_tower_config_organization_permission.role }}"
+    team: "{{ ansible_tower_config_organization_permission.team | default(omit) }}"
+    user: "{{ ansible_tower_config_organization_permission.user | default(omit) }}"
+    credential: "{{ ansible_tower_config_organization_permission.credential | default(omit) }}"
+    inventory: "{{ ansible_tower_config_organization_permission.inventory | default(omit) }}"
+    job_template: "{{ ansible_tower_config_organization_permission.job_template | default(omit) }}"
+    organization: "{{ ansible_tower_config_organization_permission.organization | default(omit) }}"
+    project: "{{ ansible_tower_config_organization_permission.project | default(omit) }}"
+    target_team: "{{ ansible_tower_config_organization_permission.target_team | default(omit) }}"
+    state: "{{ ansible_tower_config_organization_permission.state | default(omit) }}"
