@@ -6,8 +6,8 @@
 
 - name: "Configure Setting"
   import_tasks: "config/setting.yml"
-  when: ansible_tower_config.setting is mapping
+  when: tower_config.setting is mapping
 
 - name: "Configure Organization"
   import_tasks: "config/organization.yml"
-  when: ansible_tower_config.organization is mapping
+  when: tower_config.organization is mapping

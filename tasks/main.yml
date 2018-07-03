@@ -3,4 +3,4 @@
   run_once: true
   delegate_to: "{{ ansible_play_hosts | first }}"
   environment:
-    PATH: "{{ __ansible_tower_config.awx_venv }}:{{ ansible_env.PATH }}"
+    PATH: "{{ _tower_config.awx_venv }}:{{ ansible_env.PATH }}"

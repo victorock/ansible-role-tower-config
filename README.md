@@ -1,7 +1,7 @@
-Ansible Tower Setup
+Ansible Tower Config
 =========
 
-Simple Role to Setup Ansible Tower by Red Hat.
+Simple Role to Configure Ansible Tower by Red Hat.
 
 Requirements
 ------------
@@ -15,7 +15,7 @@ defaults/main.yml
 
 ```
 ---
-ansible_tower_config:
+tower_config:
   host: "tower.example.com"
   username: "admin"
   password: "toweradmin"
@@ -299,7 +299,7 @@ Example Playbook
   become: true
 
   roles:
-    - victorock.ansible-tower-config
+    - victorock.tower_config
 ```
 
 License

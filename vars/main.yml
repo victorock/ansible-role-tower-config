@@ -1,4 +1,4 @@
-__ansible_tower_config:
+_tower_config:
   host: https://localhost
   username: admin
   password: toweradmin

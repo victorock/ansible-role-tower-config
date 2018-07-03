@@ -1,16 +1,16 @@
 ---
-- name: "config.organization.team: Ensure state of team: [ {{ ansible_tower_config_organization_team.name }} ]"
+- name: "config.organization.team: Ensure state of team: [ {{ tower_config_organization_team.name }} ]"
   tower_team:
-    name: "{{ ansible_tower_config_organization_team.name }}"
-    organization: "{{ ansible_tower_config_organization.name }}"
-    description: "{{ ansible_tower_config_organization_team.description | default(omit) }}"
-    state: "{{ ansible_tower_config_organization_team.state | default(omit) }}"
+    name: "{{ tower_config_organization_team.name }}"
+    organization: "{{ tower_config_organization.name }}"
+    description: "{{ tower_config_organization_team.description | default(omit) }}"
+    state: "{{ tower_config_organization_team.state | default(omit) }}"
 
 ## Functionality not available in the module today
-- name: "config.organization.team: Ensure membership of team: [ {{ ansible_tower_config_organization_team.name }} ] with tower-cli"
-  when: ansible_tower_config_organization_team.members is defined
+- name: "config.organization.team: Ensure membership of team: [ {{ tower_config_organization_team.name }} ] with tower-cli"
+  when: tower_config_organization_team.members is defined
   include_tasks: "team/member-cli.yml"
-  loop: "{{ ansible_tower_config_organization_team.members }}"
+  loop: "{{ tower_config_organization_team.members }}"
   loop_control:
-    loop_var: ansible_tower_config_organization_team_member
-    label: "{{ ansible_tower_config_organization_team_member.name }}"
+    loop_var: tower_config_organization_team_member
+    label: "{{ tower_config_organization_team_member.name }}"
