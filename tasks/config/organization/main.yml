@@ -1,71 +1,71 @@
 ---
-- name: "config.organization: Ensure state of organization: [ {{ ansible_tower_config_organization.name }} ]"
+- name: "config.organization: Ensure state of organization: [ {{ tower_config_organization.name }} ]"
   tower_organization:
-    name: "{{ ansible_tower_config_organization.name }}"
-    description: "{{ ansible_tower_config_organization.description | default(omit) }}"
-    state: "{{ ansible_tower_config_organization.state | default('present') }}"
+    name: "{{ tower_config_organization.name }}"
+    description: "{{ tower_config_organization.description | default(omit) }}"
+    state: "{{ tower_config_organization.state | default('present') }}"
 
 - name: "config.organization: Process [ users ]"
-  when: ansible_tower_config_organization.users is defined
+  when: tower_config_organization.users is defined
   include_tasks: "user.yml"
-  loop: "{{ ansible_tower_config_organization.users | default ([]) }}"
+  loop: "{{ tower_config_organization.users | default ([]) }}"
   loop_control:
-    loop_var: ansible_tower_config_organization_user
-    label: "{{ ansible_tower_config_organization_user.name }}"
+    loop_var: tower_config_organization_user
+    label: "{{ tower_config_organization_user.name }}"
 
 - name: "config.organization: Process [ teams ]"
-  when: ansible_tower_config_organization.teams is defined
+  when: tower_config_organization.teams is defined
   include_tasks: "team.yml"
-  loop: "{{ ansible_tower_config_organization.teams | default ([]) }}"
+  loop: "{{ tower_config_organization.teams | default ([]) }}"
   loop_control:
-    loop_var: ansible_tower_config_organization_team
-    label: "{{ ansible_tower_config_organization_team.name }}"
+    loop_var: tower_config_organization_team
+    label: "{{ tower_config_organization_team.name }}"
 
 - name: "config.organization: Process [ credentials ]"
-  when: ansible_tower_config_organization.credentials is defined
+  when: tower_config_organization.credentials is defined
   include_tasks: "credential.yml"
-  loop: "{{ ansible_tower_config_organization.credentials | default ([]) }}"
+  loop: "{{ tower_config_organization.credentials | default ([]) }}"
   loop_control:
-    loop_var: ansible_tower_config_organization_credential
-    label: "{{ ansible_tower_config_organization_credential.name }}"
+    loop_var: tower_config_organization_credential
+    label: "{{ tower_config_organization_credential.name }}"
 
 - name: "config.organization: Process [ projects ]"
-  when: ansible_tower_config_organization.projects is defined
+  when: tower_config_organization.projects is defined
   include_tasks: "project.yml"
-  loop: "{{ ansible_tower_config_organization.projects | default ([]) }}"
+  loop: "{{ tower_config_organization.projects | default ([]) }}"
   loop_control:
-    loop_var: ansible_tower_config_organization_project
-    label: "{{ ansible_tower_config_organization_project.name }}"
+    loop_var: tower_config_organization_project
+    label: "{{ tower_config_organization_project.name }}"
 
 - name: "config.organization: Process [ inventories ]"
-  when: ansible_tower_config_organization.inventories is defined
+  when: tower_config_organization.inventories is defined
   include_tasks: "inventory.yml"
-  loop: "{{ ansible_tower_config_organization.inventories | default ([]) }}"
+  loop: "{{ tower_config_organization.inventories | default ([]) }}"
   loop_control:
-    loop_var: ansible_tower_config_organization_inventory
-    label: "{{ ansible_tower_config_organization_inventory.name }}"
+    loop_var: tower_config_organization_inventory
+    label: "{{ tower_config_organization_inventory.name }}"
 
 - name: "config.organization: Process [ job_templates ]"
-  when: ansible_tower_config_organization.job_templates is defined
+  when: tower_config_organization.job_templates is defined
   include_tasks: "job_template.yml"
-  loop: "{{ ansible_tower_config_organization.job_templates | default ([]) }}"
+  loop: "{{ tower_config_organization.job_templates | default ([]) }}"
   loop_control:
-    loop_var: ansible_tower_config_organization_job_template
-    label: "{{ ansible_tower_config_organization_job_template.name }}"
+    loop_var: tower_config_organization_job_template
+    label: "{{ tower_config_organization_job_template.name }}"
 
 ### Buggy module
 #- name: "config.organization: Process [ permissions ]"
-#  when: ansible_tower_config_organization.permissions is sequence
+#  when: tower_config_organization.permissions is sequence
 #  include_tasks: "permission.yml"
-#  loop: "{{ ansible_tower_config_organization.permissions }}"
+#  loop: "{{ tower_config_organization.permissions }}"
 #  loop_control:
-#    loop_var: ansible_tower_config_organization_permission
-#    label: "{{ ansible_tower_config_organization_permission.team }}"
+#    loop_var: tower_config_organization_permission
+#    label: "{{ tower_config_organization_permission.team }}"
 
 - name: "config.organization: Process [ permissions ] with tower-cli"
-  when: ansible_tower_config_organization.permissions is defined
+  when: tower_config_organization.permissions is defined
   include_tasks: "permission-cli.yml"
-  loop: "{{ ansible_tower_config_organization.permissions | default ([]) }}"
+  loop: "{{ tower_config_organization.permissions | default ([]) }}"
   loop_control:
-    loop_var: ansible_tower_config_organization_permission
-    label: "{{ ansible_tower_config_organization_permission.team }}"
+    loop_var: tower_config_organization_permission
+    label: "{{ tower_config_organization_permission.team }}"

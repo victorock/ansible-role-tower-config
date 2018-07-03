@@ -15,7 +15,7 @@ defaults/main.yml
 
 ```
 ---
-ansible_tower_config:
+tower_config:
   host: "tower.example.com"
   username: "admin"
   password: "toweradmin"
@@ -299,7 +299,7 @@ Example Playbook
   become: true
 
   roles:
-    - victorock.ansible-tower-config
+    - victorock.tower_config
 ```
 
 License

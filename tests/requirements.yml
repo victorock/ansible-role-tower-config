@@ -1,0 +1,4 @@
+---
+- src: victorock.tower_setup
+- src: victorock.download
+- src: geerlingguy.pip
