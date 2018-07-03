@@ -1,7 +1,7 @@
-Ansible Tower Setup
+Ansible Tower Config
 =========
 
-Simple Role to Setup Ansible Tower by Red Hat.
+Simple Role to Configure Ansible Tower by Red Hat.
 
 Requirements
 ------------
