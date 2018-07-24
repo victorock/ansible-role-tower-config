@@ -1,6 +1,4 @@
 ---
 - import_tasks: config.yml
-  run_once: true
-  delegate_to: "{{ ansible_play_hosts | first }}"
   environment:
     PATH: "{{ _tower_config.awx_venv }}:{{ ansible_env.PATH }}"
