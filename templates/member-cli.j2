@@ -1,13 +1,13 @@
 tower-cli
 team
-{% if ansible_tower_config_organization_team.state|default('present') == 'present' %}
+{% if tower_config_organization_team.state|default('present') == 'present' %}
 associate
-{% elif ansible_tower_config_organization_team.state|default('present') == 'absent' %}
+{% elif tower_config_organization_team.state|default('present') == 'absent' %}
 disassociate
 {% endif %}
-{% if ansible_tower_config_organization_team.name is defined %}
---team {{ ansible_tower_config_organization_team.name | quote }}
+{% if tower_config_organization_team.name is defined %}
+--team {{ tower_config_organization_team.name | quote }}
 {% endif %}
-{% if ansible_tower_config_organization_team_member.name  is defined %}
---user {{ ansible_tower_config_organization_team_member.name | quote }}
+{% if tower_config_organization_team_member.name  is defined %}
+--user {{ tower_config_organization_team_member.name | quote }}
 {% endif %}
