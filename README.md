@@ -171,8 +171,7 @@ tower_config:
           inventory: "netops"
           forks: 50
           limit: "dev"
-          machine_credential: "network-nxos-ssh"
-          network_credential: "network-nxos-net"
+          credential: "network-nxos-ssh, network-nxos-net"
         - name: "Dev: devops:helloworld"
           description: "Dev: devops:helloworld"
           project: "Dev: netops:ansible-tower-example"
@@ -180,7 +179,7 @@ tower_config:
           inventory: "devops"
           forks: 50
           limit: "dev"
-          machine_credential: "system-linux-ssh"
+          credential: "system-linux-ssh"
         - name: "Dev: sysops:helloworld"
           description: "Dev: sysops:helloworld"
           project: "Dev: sysops:ansible-tower-example"
@@ -188,7 +187,7 @@ tower_config:
           inventory: "sysops"
           forks: 50
           limit: "dev"
-          machine_credential: "system-windows-ssh"
+          credential: "system-windows-ssh"
         - name: "Dev: secops:helloworld"
           description: "Dev: secops:helloworld"
           project: "Dev: secops:ansible-tower-example"
@@ -196,7 +195,7 @@ tower_config:
           inventory: "secops"
           forks: 50
           limit: "dev"
-          machine_credential: "system-linux-ssh"
+          credential: "system-linux-ssh"
       permissions:
         - team: "infraops"
           role: "admin"
