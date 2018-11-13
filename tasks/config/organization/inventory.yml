@@ -5,20 +5,10 @@
     description: "{{ tower_config_organization_inventory.description | default(omit) }}"
     state: "{{ tower_config_organization_inventory.state | default(omit) }}"
 
-## Do not cover functionality: sources from project
-#- name: "organizations.inventory: Process [ sources ]"
-#  when: tower_config_organization_inventory.sources is sequence
-#  include_tasks: "inventory/source.yml"
-#  loop: "{{ tower_config_organization_inventory.sources }}"
-#  loop_control:
-#      loop_var: tower_config_organization_inventory_source
-#      label: "{{ tower_config_organization_inventory_source.name }}"
-
-## Functionality not available in the module today
-- name: "organizations.inventory: Process [ sources ] with tower-cli"
-  when: tower_config_organization_inventory.sources is defined
-  include_tasks: "inventory/source-cli.yml"
-  loop: "{{ tower_config_organization_inventory.sources | default([]) }}"
+- name: "organizations.inventory: Process [ sources ]"
+  when: tower_config_organization_inventory.sources is sequence
+  include_tasks: "inventory/source.yml"
+  loop: "{{ tower_config_organization_inventory.sources }}"
   loop_control:
       loop_var: tower_config_organization_inventory_source
       label: "{{ tower_config_organization_inventory_source.name }}"
