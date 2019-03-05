@@ -1,5 +1,9 @@
 - name: "config.organization.permission: Ensure permissions for role [ {{ tower_config_organization_permission.role }} ]"
   tower_role:
+    tower_host: "{{ tower_config.host }}"
+    tower_username: "{{ tower_config.username }}"
+    tower_password: "{{ tower_config.password }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl|bool }}"
     role: "{{ tower_config_organization_permission.role }}"
     team: "{{ tower_config_organization_permission.team | default(omit) }}"
     user: "{{ tower_config_organization_permission.user | default(omit) }}"

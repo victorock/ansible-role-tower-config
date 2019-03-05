@@ -1,6 +1,4 @@
 dependencies:
-  - role: geerlingguy.repo-epel
-    when: ansible_os_family == 'RedHat'
   - role: geerlingguy.pip
     pip_install_packages:
       - name: ansible-tower-cli

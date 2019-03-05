@@ -6,3 +6,11 @@ _tower_config:
   format: json
   awx_venv: /var/lib/awx/venv/awx
   ansible_venv: /var/lib/awx/venv/ansible
+
+_tower_config_organization:
+  users: []
+  teams: []
+  projects: []
+  permissions: []
+  inventories: []
+  credentials: []
