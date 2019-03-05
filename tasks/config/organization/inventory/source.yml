@@ -1,5 +1,9 @@
 - name: "organization.inventory: Ensure state of inventory source: [ {{ tower_config_organization_inventory_source.name }} ]"
   tower_inventory_source:
+    tower_host: "{{ tower_config.host }}"
+    tower_username: "{{ tower_config.username }}"
+    tower_password: "{{ tower_config.username }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl|bool }}"
     name: "{{ tower_config_organization_inventory_source.name }}"
     description: "{{ tower_config_organization_inventory_source.description | default(omit) }}"
     state: "{{ tower_config_organization_inventory_source.state | default(omit) }}"

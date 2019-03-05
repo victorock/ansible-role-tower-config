@@ -1,11 +1,15 @@
 ---
 - name: "config.organization.team: Ensure state of team: [ {{ tower_config_organization_team.name }} ]"
   tower_team:
+    tower_host: "{{ tower_config.host }}"
+    tower_username: "{{ tower_config.username }}"
+    tower_password: "{{ tower_config.password }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl|bool }}"
     name: "{{ tower_config_organization_team.name }}"
     organization: "{{ tower_config_organization.name }}"
     description: "{{ tower_config_organization_team.description | default(omit) }}"
     state: "{{ tower_config_organization_team.state | default(omit) }}"
-
+    
 ## Functionality not available in the module today
 - name: "config.organization.team: Ensure membership of team: [ {{ tower_config_organization_team.name }} ] with tower-cli"
   when: tower_config_organization_team.members is defined

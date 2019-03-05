@@ -1,6 +1,10 @@
 ---
 - name: "config.organization: Ensure state of job_template: [ {{ tower_config_organization_job_template.name }} ]"
   tower_job_template:
+    tower_host: "{{ tower_config.host }}"
+    tower_username: "{{ tower_config.username }}"
+    tower_password: "{{ tower_config.password }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl|bool }}"
     name: "{{ tower_config_organization_job_template.name }}"
     playbook: "{{ tower_config_organization_job_template.playbook }}"
     project:  "{{ tower_config_organization_job_template.project }}"

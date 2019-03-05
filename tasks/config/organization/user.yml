@@ -1,6 +1,10 @@
 ---
 - name: "config.organization.user: Ensure state of user: [ {{ tower_config_organization_user.name }} ]"
   tower_user:
+    tower_host: "{{ tower_config.host }}"
+    tower_username: "{{ tower_config.username }}"
+    tower_password: "{{ tower_config.password }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl|bool }}"
     username:   "{{ tower_config_organization_user.name       }}"
     password:   "{{ tower_config_organization_user.password   }}"
     email:      "{{ tower_config_organization_user.email      }}"
@@ -12,6 +16,10 @@
 
 - name: "config.organization.permission: Ensure membership in Organization for user: [ {{ tower_config_organization_user.name }} ]"
   tower_role:
+    tower_host: "{{ tower_config.host }}"
+    tower_username: "{{ tower_config.username }}"
+    tower_password: "{{ tower_config.password }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl|bool }}"
     user:         "{{ tower_config_organization_user.name }}"
     organization: "{{ tower_config_organization.name }}"
     role:         "member"
