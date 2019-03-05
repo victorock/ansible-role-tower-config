@@ -1,3 +1,0 @@
-- name: "organization.inventory.source-cli: Ensure state of source : [ {{ tower_config_organization_inventory_source.name }} ]"
-  command: "{{ lookup('template', 'source-cli.j2') }}"
-  register: tower_cli_inventory_source
