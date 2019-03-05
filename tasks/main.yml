@@ -1,4 +1,5 @@
 ---
-- import_tasks: config.yml
+- name: "config.yml"
+  import_tasks: config.yml
   environment:
     PATH: "{{ _tower_config.awx_venv }}:{{ ansible_env.PATH }}"

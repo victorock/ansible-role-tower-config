@@ -4,6 +4,7 @@
     user: "{{ tower_config.username }}"
     password: "{{ tower_config.password }}"
     validate_certs: "{{ tower_config.verify_ssl|bool }}"
+    force_basic_auth: true
     headers:
       Content-Type: "application/json"
       Accept: "application/json"
