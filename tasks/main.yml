@@ -1,5 +1,7 @@
 ---
+- name: "Combine Configuration Hashes from User and Role"
+  set_fact:
+    tower_config: "{{ _tower_config | combine(tower_config) }}"
+
 - name: "config.yml"
   import_tasks: config.yml
-  environment:
-    PATH: "{{ _tower_config.awx_venv }}:{{ ansible_env.PATH }}"

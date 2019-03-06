@@ -1,3 +1,0 @@
-- name: "config.variables: Combine Configuration Hashes from User and Role"
-  set_fact:
-    tower_config: "{{ _tower_config | combine( tower_config ) }}"
