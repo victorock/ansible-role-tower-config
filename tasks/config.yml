@@ -1,6 +1,4 @@
-- name: "Configure Variables"
-  import_tasks: "config/variables.yml"
-
+---
 - name: "Configure Tower-CLI"
   import_tasks: "config/tower_cli.yml"
 
