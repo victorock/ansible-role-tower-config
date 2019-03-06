@@ -6,7 +6,7 @@ Simple Role to Configure Ansible Tower by Red Hat.
 Requirements
 ------------
 
-None
+`ansible-tower-cli`
 
 Role Variables
 --------------
@@ -280,15 +280,8 @@ tower_config:
 Dependencies
 ------------
 
-The following dependencies are defined in `meta/main.yml`:
+None
 
-```YAML
-dependencies:
-  - role: geerlingguy.pip
-    pip_install_packages:
-      - name: ansible-tower-cli
-
-```
 Example Playbook
 ----------------
 
