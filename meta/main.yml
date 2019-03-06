@@ -1,7 +1,4 @@
-dependencies:
-  - role: geerlingguy.pip
-    pip_install_packages:
-      - name: ansible-tower-cli
+dependencies: []
 
 galaxy_info:
   role_name: tower_config
