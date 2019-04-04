@@ -1,3 +1,4 @@
+---
 - name: "config.organization: Process [ organization ]"
   when: tower_config_organization is defined
   include_tasks: "organization/main.yml"

@@ -1,20 +1,24 @@
 ---
-- name: "config.organization.team: Ensure state of team: [ {{ tower_config_organization_team.name }} ]"
+- name: "config.organization.team: [ {{ tower_config_organization_team.name }} ]"
   tower_team:
-    tower_host: "{{ tower_config.host }}"
-    tower_username: "{{ tower_config.username }}"
-    tower_password: "{{ tower_config.password }}"
-    tower_verify_ssl: "{{ tower_config.verify_ssl|bool }}"
+    tower_host: "{{ tower_config.host | default(omit) }}"
+    tower_username: "{{ tower_config.username | default(omit) }}"
+    tower_password: "{{ tower_config.password | default(omit) }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl | default(omit) }}"
     name: "{{ tower_config_organization_team.name }}"
     organization: "{{ tower_config_organization.name }}"
     description: "{{ tower_config_organization_team.description | default(omit) }}"
     state: "{{ tower_config_organization_team.state | default(omit) }}"
-    
+  async: 15
+  poll: 1
+
 ## Functionality not available in the module today
-- name: "config.organization.team: Ensure membership of team: [ {{ tower_config_organization_team.name }} ] with tower-cli"
+- name: "config.organization.team.member-cli: [ {{ tower_config_organization_team.name }} ]"
   when: tower_config_organization_team.members is defined
   include_tasks: "team/member-cli.yml"
   loop: "{{ tower_config_organization_team.members }}"
   loop_control:
     loop_var: tower_config_organization_team_member
     label: "{{ tower_config_organization_team_member.name }}"
+  async: 15
+  poll: 1

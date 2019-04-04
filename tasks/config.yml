@@ -4,8 +4,8 @@
 
 - name: "Configure Setting"
   import_tasks: "config/setting.yml"
-  when: tower_config.setting is mapping
+  when: tower_config.setting is defined
 
 - name: "Configure Organization"
   import_tasks: "config/organization.yml"
-  when: tower_config.organization is mapping
+  when: tower_config.organization is defined

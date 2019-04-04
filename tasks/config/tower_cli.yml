@@ -1,5 +1,19 @@
-- name: "config.tower_cli: Generate tower_cli.cfg"
-  template:
-    src: "tower_cli.cfg.j2"
-    dest: "~/.tower_cli.cfg"
+---
+- name: "config.tower_cli: Configure"
+  when: tower_config[tower_config_ini_key] is defined
+  ini_file:
+    path: "~/.tower_cli.cfg"
+    section: "general"
+    option: "{{ tower_config_ini_key }}"
+    value: "{{ tower_config[tower_config_ini_key] }}"
     mode: 0600
+  loop:
+    - host
+    - username
+    - password
+    - verify_ssl
+    - format
+    - oauth_token
+  loop_control:
+    loop_var: tower_config_ini_key
+    label: "{{ tower_config_ini_key }}"

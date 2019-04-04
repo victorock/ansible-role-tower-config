@@ -1,18 +1,23 @@
-- name: "organization.inventory: Ensure state of inventory: [ {{ tower_config_organization_inventory.name }} ]"
+---
+- name: "config.organization.inventory: [ {{ tower_config_organization_inventory.name }} ]"
   tower_inventory:
-    tower_host: "{{ tower_config.host }}"
-    tower_username: "{{ tower_config.username }}"
-    tower_password: "{{ tower_config.password }}"
-    tower_verify_ssl: "{{ tower_config.verify_ssl|bool }}"
+    tower_host: "{{ tower_config.host | default(omit) }}"
+    tower_username: "{{ tower_config.username | default(omit) }}"
+    tower_password: "{{ tower_config.password | default(omit) }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl | default(omit) }}"
     name: "{{ tower_config_organization_inventory.name }}"
-    organization:  "{{ tower_config_organization.name }}"
+    organization: "{{ tower_config_organization.name }}"
     description: "{{ tower_config_organization_inventory.description | default(omit) }}"
     state: "{{ tower_config_organization_inventory.state | default(omit) }}"
+  async: 15
+  poll: 1
 
 - name: "organizations.inventory: Process [ sources ]"
   when: tower_config_organization_inventory.sources is sequence
   include_tasks: "inventory/source.yml"
   loop: "{{ tower_config_organization_inventory.sources }}"
   loop_control:
-      loop_var: tower_config_organization_inventory_source
-      label: "{{ tower_config_organization_inventory_source.name }}"
+    loop_var: tower_config_organization_inventory_source
+    label: "{{ tower_config_organization_inventory_source.name }}"
+  async: 15
+  poll: 1

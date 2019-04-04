@@ -1,3 +1,5 @@
-- name: "config.team.member-cli: Ensure membership for [ {{ tower_config_organization_team.name }}:{{ tower_config_organization_team_member.name }} ]"
+---
+- name: "config.organization.team.member-cli: [ {{ tower_config_organization_team.name }} ]"
   command: "{{ lookup('template', 'member-cli.j2') }}"
   register: tower_cli_team
+  when: tower_config_organization_team.name is defined
