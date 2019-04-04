@@ -1,9 +1,10 @@
-- name: "config.setting.license: Ensure state of LICENSE"
+---
+- name: "config.setting.license: Ensure state"
   uri:
     url: "https://{{ tower_config.host }}/api/v1/config/"
     user: "{{ tower_config.username }}"
     password: "{{ tower_config.password }}"
-    validate_certs: "{{ tower_config.verify_ssl|bool }}"
+    validate_certs: "{{ tower_config.verify_ssl | default(omit) }}"
     force_basic_auth: true
     headers:
       Content-Type: "application/json"

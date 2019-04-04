@@ -1,20 +1,22 @@
 ---
-- name: "config.organization.project: Ensure state of project: [ {{ tower_config_organization_project.name }} ]"
+- name: "config.organization.project: [ {{ tower_config_organization_project.name }} ]"
   tower_project:
-    tower_host: "{{ tower_config.host }}"
-    tower_username: "{{ tower_config.username }}"
-    tower_password: "{{ tower_config.password }}"
-    tower_verify_ssl: "{{ tower_config.verify_ssl|bool }}"
+    tower_host: "{{ tower_config.host | default(omit) }}"
+    tower_username: "{{ tower_config.username | default(omit) }}"
+    tower_password: "{{ tower_config.password | default(omit) }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl | default(omit) }}"
     name: "{{ tower_config_organization_project.name }}"
     organization: "{{ tower_config_organization.name | default(omit) }}"
     description: "{{ tower_config_organization_project.description | default(omit) }}"
-# https://github.com/ansible/ansible/issues/32274
-#    scm_credential: "{{ tower_config_organization_project.scm_credential | default(omit) }}"
+    # https://github.com/ansible/ansible/issues/32274
+    # scm_credential: "{{ tower_config_organization_project.scm_credential | default(omit) }}"
     scm_credential: "{{ tower_config_organization_project.scm_credential }}"
     scm_type: "{{ tower_config_organization_project.scm_type | default(omit) }}"
     scm_branch: "{{ tower_config_organization_project.scm_branch | default(omit) }}"
     scm_update_on_launch: "{{ tower_config_organization_project.scm_update_on_launch | default(omit) }}"
     scm_delete_on_update: "{{ tower_config_organization_project.scm_delete_on_update | default(omit) }}"
-    scm_clean:  "{{ tower_config_organization_project.scm_clean | default(omit) }}"
+    scm_clean: "{{ tower_config_organization_project.scm_clean | default(omit) }}"
     scm_url: "{{ tower_config_organization_project.scm_url | default(omit) }}"
     state: "{{ tower_config_organization_project.state | default(omit) }}"
+  async: 15
+  poll: 1

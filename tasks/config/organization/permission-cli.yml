@@ -1,3 +1,5 @@
-- name: "config.organization.permission-cli: Ensure permissions for role [ {{ tower_config_organization_permission.role }} ]"
+---
+- name: "config.organization.permission-cli: [ {{ tower_config_organization_permission.role }} ]"
   command: "{{ lookup('template', 'permission-cli.j2') }}"
   register: tower_cli_permission
+  when: tower_config_organization_permission.role is defined

@@ -1,10 +1,10 @@
 ---
-- name: "config.organization: Ensure state of organization: [ {{ tower_config_organization.name }} ]"
+- name: "config.organization: [ {{ tower_config_organization.name }} ]"
   tower_organization:
-    tower_host: "{{ tower_config.host }}"
-    tower_username: "{{ tower_config.username }}"
-    tower_password: "{{ tower_config.password }}"
-    tower_verify_ssl: "{{ tower_config.verify_ssl|bool }}"
+    tower_host: "{{ tower_config.host | default(omit) }}"
+    tower_username: "{{ tower_config.username | default(omit) }}"
+    tower_password: "{{ tower_config.password | default(omit) }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl | default(omit) }}"
     name: "{{ tower_config_organization.name }}"
     description: "{{ tower_config_organization.description | default(omit) }}"
     state: "{{ tower_config_organization.state | default('present') }}"
@@ -58,13 +58,13 @@
     label: "{{ tower_config_organization_job_template.name }}"
 
 ### Buggy module
-#- name: "config.organization: Process [ permissions ]"
-#  when: tower_config_organization.permissions is sequence
-#  include_tasks: "permission.yml"
-#  loop: "{{ tower_config_organization.permissions }}"
-#  loop_control:
-#    loop_var: tower_config_organization_permission
-#    label: "{{ tower_config_organization_permission.team }}"
+# - name: "config.organization: Process [ permissions ]"
+#   when: tower_config_organization.permissions is sequence
+#   include_tasks: "permission.yml"
+#   loop: "{{ tower_config_organization.permissions }}"
+#   loop_control:
+#     loop_var: tower_config_organization_permission
+#     label: "{{ tower_config_organization_permission.team }}"
 
 - name: "config.organization: Process [ permissions ] with tower-cli"
   when: tower_config_organization.permissions is defined

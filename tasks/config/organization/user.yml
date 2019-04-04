@@ -1,26 +1,30 @@
 ---
-- name: "config.organization.user: Ensure state of user: [ {{ tower_config_organization_user.name }} ]"
+- name: "config.organization.user: [ {{ tower_config_organization_user.name }} ]"
   tower_user:
-    tower_host: "{{ tower_config.host }}"
-    tower_username: "{{ tower_config.username }}"
-    tower_password: "{{ tower_config.password }}"
-    tower_verify_ssl: "{{ tower_config.verify_ssl|bool }}"
-    username:   "{{ tower_config_organization_user.name       }}"
-    password:   "{{ tower_config_organization_user.password   }}"
-    email:      "{{ tower_config_organization_user.email      }}"
-    first_name: "{{ tower_config_organization_user.first_name }}"
-    last_name:  "{{ tower_config_organization_user.last_name  }}"
-    superuser:  "{{ tower_config_organization_user.superuser|bool | default(omit) }}"
-    auditor:    "{{ tower_config_organization_user.auditor|bool   | default(omit) }}"
-    state:      "{{ tower_config_organization_user.state          | default(omit) }}"
+    tower_host: "{{ tower_config.host | default(omit) }}"
+    tower_username: "{{ tower_config.username | default(omit) }}"
+    tower_password: "{{ tower_config.password | default(omit) }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl | default(omit) }}"
+    username: "{{ tower_config_organization_user.name }}"
+    password: "{{ tower_config_organization_user.password | default(omit) }}"
+    email: "{{ tower_config_organization_user.email }}"
+    first_name: "{{ tower_config_organization_user.first_name | default(omit) }}"
+    last_name: "{{ tower_config_organization_user.last_name  | default(omit) }}"
+    superuser: "{{ tower_config_organization_user.superuser | bool or omit }}"
+    auditor: "{{ tower_config_organization_user.auditor | bool or omit }}"
+    state: "{{ tower_config_organization_user.state | default(omit) }}"
+  async: 15
+  poll: 1
 
-- name: "config.organization.permission: Ensure membership in Organization for user: [ {{ tower_config_organization_user.name }} ]"
+- name: "config.organization.permission: [ {{ tower_config_organization_user.name }} ]"
   tower_role:
     tower_host: "{{ tower_config.host }}"
     tower_username: "{{ tower_config.username }}"
     tower_password: "{{ tower_config.password }}"
     tower_verify_ssl: "{{ tower_config.verify_ssl|bool }}"
-    user:         "{{ tower_config_organization_user.name }}"
+    user: "{{ tower_config_organization_user.name }}"
     organization: "{{ tower_config_organization.name }}"
-    role:         "member"
-    state:        "present"
+    role: "member"
+    state: "present"
+  async: 15
+  poll: 1

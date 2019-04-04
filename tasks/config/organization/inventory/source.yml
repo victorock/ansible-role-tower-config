@@ -1,9 +1,10 @@
-- name: "organization.inventory: Ensure state of inventory source: [ {{ tower_config_organization_inventory_source.name }} ]"
+---
+- name: "config.organization.inventory.source: [ {{ tower_config_organization_inventory_source.name }} ]"
   tower_inventory_source:
-    tower_host: "{{ tower_config.host }}"
-    tower_username: "{{ tower_config.username }}"
-    tower_password: "{{ tower_config.username }}"
-    tower_verify_ssl: "{{ tower_config.verify_ssl|bool }}"
+    tower_host: "{{ tower_config.host | default(omit) }}"
+    tower_username: "{{ tower_config.username | default(omit) }}"
+    tower_password: "{{ tower_config.password | default(omit) }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl | default(omit) }}"
     name: "{{ tower_config_organization_inventory_source.name }}"
     description: "{{ tower_config_organization_inventory_source.description | default(omit) }}"
     state: "{{ tower_config_organization_inventory_source.state | default(omit) }}"
@@ -19,3 +20,5 @@
     source_regions: "{{ tower_config_organization_inventory_source.source_regions | default(omit) }}"
     source_script: "{{ tower_config_organization_inventory_source.source_script | default(omit) }}"
     source_vars: "{{ tower_config_organization_inventory_source.source_vars | default(omit) }}"
+  async: 15
+  poll: 1

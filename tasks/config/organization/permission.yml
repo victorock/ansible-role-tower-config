@@ -1,9 +1,10 @@
-- name: "config.organization.permission: Ensure permissions for role [ {{ tower_config_organization_permission.role }} ]"
+---
+- name: "config.organization.permission: [ {{ tower_config_organization_permission.role }} ]"
   tower_role:
-    tower_host: "{{ tower_config.host }}"
-    tower_username: "{{ tower_config.username }}"
-    tower_password: "{{ tower_config.password }}"
-    tower_verify_ssl: "{{ tower_config.verify_ssl|bool }}"
+    tower_host: "{{ tower_config.host | default(omit) }}"
+    tower_username: "{{ tower_config.username | default(omit) }}"
+    tower_password: "{{ tower_config.password | default(omit) }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl | default(omit) }}"
     role: "{{ tower_config_organization_permission.role }}"
     team: "{{ tower_config_organization_permission.team | default(omit) }}"
     user: "{{ tower_config_organization_permission.user | default(omit) }}"
@@ -14,3 +15,5 @@
     project: "{{ tower_config_organization_permission.project | default(omit) }}"
     target_team: "{{ tower_config_organization_permission.target_team | default(omit) }}"
     state: "{{ tower_config_organization_permission.state | default(omit) }}"
+  async: 15
+  poll: 1

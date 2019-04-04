@@ -1,25 +1,9 @@
 ---
-- hosts: all
-  gather_facts: yes
+- name: Converge
+  hosts: all
+  become: false
 
   vars:
-    # Autorun victorock roles
-    autorun: true
-
-    # Install pip package
-    pip_install_packages:
-      - name: ansible-tower-cli
-
-    # Download tower_license.txt artifact
-    download: "gs"
-    download_user: "{{ lookup('ENV', 'GS_ACCESS_KEY_ID') }}"
-    download_pass: "{{ lookup('ENV', 'GS_SECRET_ACCESS_KEY') }}"
-    download_file: "tower_license.txt"
-    download_from: "/input/{{ download_file }}"
-    download_from_bucket: "darkbulb-image-store"
-    download_from_region: "europe-west1"
-    download_to: "/tmp/{{ download_file }}"
-
     # Tower configuration
     tower_config:
       host: "localhost"
@@ -27,11 +11,21 @@
       password: "toweradmin"
       verify_ssl: false
       setting:
-        license: "{{ lookup('file', download_to) | from_json }}"
+        license:
+          company_name: "Red Hat"
+          contact_email: "vdacosta@redhat.com"
+          contact_name: "Victor da Costa"
+          hostname: "9d7cbfa4e6a548578e32250039b40026"
+          instance_count: 10
+          license_date: 2122451371
+          license_key: "0219bcbd294c57dfebdc638ffdc1eeb8bbdbd1000728b0d85554d4cd79f37863"
+          license_type: "basic"
+          subscription_name: "Red Hat Ansible Tower, Self-Support (10 Managed Nodes)"
+          eula_accepted: true
       organization:
         README:
-          name: "README"
-          description: "README"
+          name: "Default"
+          description: "Default"
           users:
             - name: "infraops"
               password: "infraops"
@@ -123,28 +117,24 @@
               description: "Dev: netops:ansible-tower-example"
               scm_credential: "empty-scm"
               scm_type: "git"
-              scm_branch: "dev"
               scm_update_on_launch: true
               scm_url: "https://github.com/ansible/tower-example"
             - name: "Dev: devops:ansible-tower-example"
               description: "Dev: devops:ansible-tower-example"
               scm_credential: "empty-scm"
               scm_type: "git"
-              scm_branch: "dev"
               scm_update_on_launch: true
               scm_url: "https://github.com/ansible/tower-example"
             - name: "Dev: sysops:ansible-tower-example"
               description: "Dev: sysops:ansible-tower-example"
               scm_credential: "empty-scm"
               scm_type: "git"
-              scm_branch: "dev"
               scm_update_on_launch: true
               scm_url: "https://github.com/ansible/tower-example"
             - name: "Dev: secops:ansible-tower-example"
               description: "Dev: secops:ansible-tower-example"
               scm_credential: "empty-scm"
               scm_type: "git"
-              scm_branch: "dev"
               scm_update_on_launch: true
               scm_url: "https://github.com/ansible/tower-example"
           inventories:
@@ -152,6 +142,8 @@
               description: "infraops"
             - name: "netops"
               description: "netops"
+            - name: "devops"
+              description: "devops"
             - name: "sysops"
               description: "sysops"
             - name: "secops"
@@ -168,7 +160,7 @@
               network_credential: "network-nxos-net"
             - name: "Dev: devops:helloworld"
               description: "Dev: devops:helloworld"
-              project: "Dev: netops:ansible-tower-example"
+              project: "Dev: devops:ansible-tower-example"
               playbook: "helloworld.yml"
               inventory: "devops"
               forks: 50
@@ -259,6 +251,18 @@
               project: "Dev: sysops:ansible-tower-example"
             - team: "netops"
               role: "admin"
+              inventory: "netops"
+            - team: "devops"
+              role: "admin"
+              inventory: "devops"
+            - team: "secops"
+              role: "admin"
+              inventory: "secops"
+            - team: "sysops"
+              role: "admin"
+              inventory: "sysops"
+            - team: "netops"
+              role: "admin"
               job_template: "Dev: netops:helloworld"
             - team: "devops"
               role: "admin"
@@ -270,9 +274,12 @@
               role: "admin"
               job_template: "Dev: secops:helloworld"
 
+  pre_tasks:
+    - name: Install dependencies (RedHat).
+      yum:
+        name: "epel-release"
+        state: "present"
+
   roles:
-    - role: victorock.tower_setup
-      when: ansible_os_family == "RedHat"
-    - role: geerlingguy.pip
-    - role: victorock.download
-    - role: role_under_test
+    - victorock.tower_setup
+    - ansible-role-tower-config
