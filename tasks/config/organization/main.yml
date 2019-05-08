@@ -64,7 +64,7 @@
 #   loop: "{{ tower_config_organization.permissions }}"
 #   loop_control:
 #     loop_var: tower_config_organization_permission
-#     label: "{{ tower_config_organization_permission.team }}"
+#     label: "{{ tower_config_organization_permission.team | default(tower_config_organization_permission.user) }}"
 
 - name: "config.organization: Process [ permissions ] with tower-cli"
   when: tower_config_organization.permissions is defined
@@ -72,4 +72,4 @@
   loop: "{{ tower_config_organization.permissions | default ([]) }}"
   loop_control:
     loop_var: tower_config_organization_permission
-    label: "{{ tower_config_organization_permission.team }}"
+    label: "{{ tower_config_organization_permission.team | default(tower_config_organization_permission.user) }}"
