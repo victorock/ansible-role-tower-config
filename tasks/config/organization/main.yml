@@ -25,6 +25,14 @@
     loop_var: tower_config_organization_team
     label: "{{ tower_config_organization_team.name }}"
 
+- name: "config.organization: Process [ credential_types ]"
+  when: tower_config_organization.credential_types is defined
+  include_tasks: "credential_type.yml"
+  loop: "{{ tower_config_organization.credential_types | default ([]) }}"
+  loop_control:
+    loop_var: tower_config_organization_credential_type
+    label: "{{ tower_config_organization_credential_type.name }}"
+
 - name: "config.organization: Process [ credentials ]"
   when: tower_config_organization.credentials is defined
   include_tasks: "credential.yml"
