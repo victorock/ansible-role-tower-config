@@ -30,3 +30,10 @@
     state: "{{ tower_config_organization_job_template.state | default(omit) }}"
   async: 15
   poll: 1
+
+- name: "config.organization.job_template.associate_credentials: [ {{ tower_config_organization_job_template.name }} ]"
+  command: "{{ lookup('template', 'job-template-credential-association-cli.j2') }}"
+  loop: "{{ tower_config_organization_job_template.associate_credentials | default ([]) }}"
+  loop_control:
+    loop_var: tower_config_organization_job_template_credential
+    label: "{{ tower_config_organization_job_template.name }}"
