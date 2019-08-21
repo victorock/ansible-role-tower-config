@@ -1,0 +1,15 @@
+---
+- name: "config.organization.host: [ {{ tower_config_organization_host.name }} ]"
+  tower_host:
+    tower_host: "{{ tower_config.host | default(omit) }}"
+    tower_username: "{{ tower_config.username | default(omit) }}"
+    tower_password: "{{ tower_config.password | default(omit) }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl | default(omit) }}"
+    name: "{{ tower_config_organization_host.name }}"
+    inventory: "{{ tower_config_organization_host.inventory }}"
+    state: "{{ tower_config_organization_host.state | default(omit) }}"
+    enabled: "{{ tower_config_organization_host.enabled | default(omit) }}"
+    description: "{{ tower_config_organization_host.description | default(omit) }}"
+    variables: "{{ tower_config_organization_host.variables | default(omit) }}"
+  async: 15
+  poll: 1
