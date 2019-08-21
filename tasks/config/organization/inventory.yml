@@ -19,5 +19,5 @@
   loop_control:
     loop_var: tower_config_organization_inventory_source
     label: "{{ tower_config_organization_inventory_source.name }}"
-  async: 15
-  poll: 1
+  #async: 15
+  #poll: 1
