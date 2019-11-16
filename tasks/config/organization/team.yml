@@ -20,5 +20,3 @@
   loop_control:
     loop_var: tower_config_organization_team_member
     label: "{{ tower_config_organization_team_member.name }}"
-  async: 15
-  poll: 1

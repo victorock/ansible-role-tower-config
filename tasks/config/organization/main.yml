@@ -49,6 +49,14 @@
     loop_var: tower_config_organization_inventory
     label: "{{ tower_config_organization_inventory.name }}"
 
+- name: "config.organization: Process [ hosts ]"
+  when: tower_config_organization.hosts is defined
+  include_tasks: "host.yml"
+  loop: "{{ tower_config_organization.hosts | default ([]) }}"
+  loop_control:
+    loop_var: tower_config_organization_host
+    label: "{{ tower_config_organization_host.name }}"
+
 - name: "config.organization: Process [ job_templates ]"
   when: tower_config_organization.job_templates is defined
   include_tasks: "job_template.yml"
