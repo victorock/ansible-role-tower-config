@@ -158,6 +158,9 @@
               limit: "dev"
               machine_credential: "network-nxos-ssh"
               network_credential: "network-nxos-net"
+              associated_credentials:
+                - name: "empty-scm"
+                  state: present
             - name: "Dev: devops:helloworld"
               description: "Dev: devops:helloworld"
               project: "Dev: devops:ansible-tower-example"
