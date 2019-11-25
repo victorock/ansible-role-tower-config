@@ -172,6 +172,9 @@ tower_config:
           forks: 50
           limit: "dev"
           credential: "network-nxos-ssh, network-nxos-net"
+          associated_credentials:
+            - name: empty-scm
+              state: present
         - name: "Dev: devops:helloworld"
           description: "Dev: devops:helloworld"
           project: "Dev: netops:ansible-tower-example"
