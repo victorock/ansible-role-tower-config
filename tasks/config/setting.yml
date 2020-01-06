@@ -2,3 +2,7 @@
 - name: "config.setting-cli: Process [ license ]"
   include_tasks: "setting/license.yml"
   when: tower_config.setting.license is defined
+
+- name: "config.setting-cli: Process [ proxy ]"
+  include_tasks: "setting/proxy.yml"
+  when: tower_config.setting.proxy is defined
