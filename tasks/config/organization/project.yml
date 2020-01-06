@@ -8,9 +8,7 @@
     name: "{{ tower_config_organization_project.name }}"
     organization: "{{ tower_config_organization.name | default(omit) }}"
     description: "{{ tower_config_organization_project.description | default(omit) }}"
-    # https://github.com/ansible/ansible/issues/32274
-    # scm_credential: "{{ tower_config_organization_project.scm_credential | default(omit) }}"
-    scm_credential: "{{ tower_config_organization_project.scm_credential }}"
+    scm_credential: "{{ tower_config_organization_project.scm_credential | default(omit) }}"
     scm_type: "{{ tower_config_organization_project.scm_type | default(omit) }}"
     scm_branch: "{{ tower_config_organization_project.scm_branch | default(omit) }}"
     scm_update_on_launch: "{{ tower_config_organization_project.scm_update_on_launch | default(omit) }}"
