@@ -25,7 +25,7 @@
     forks: "{{ tower_config_organization_job_template.forks | default(omit) }}"
     host_config_key: "{{ tower_config_organization_job_template.host_config_key | default(omit) }}"
     limit: "{{ tower_config_organization_job_template.limit | default(omit) }}"
-    # ask_limit_on_launch: "{{ tower_config_organization_job_template.ask_limit_on_launch | default(omit) }}"
+    ask_limit: "{{ tower_config_organization_job_template.ask_limit | default(omit) }}"
     verbosity: "{{ tower_config_organization_job_template.verbosity | default(omit) }}"
     state: "{{ tower_config_organization_job_template.state | default(omit) }}"
   async: 15
