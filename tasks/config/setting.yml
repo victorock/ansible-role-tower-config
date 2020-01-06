@@ -2,3 +2,7 @@
 - name: "config.setting-cli: Process [ license ]"
   include_tasks: "setting/license.yml"
   when: tower_config.setting.license is defined
+
+- name: "config.setting-cli: Process[ authentication ]"
+  include_tasks: "setting/authentication.yml"
+  when: tower_config.setting.authentication is defined

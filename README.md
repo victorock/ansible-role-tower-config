@@ -35,6 +35,13 @@ tower_config:
       trial: XXXX
       eula_accepted: true
 
+    authentication:
+      SOCIAL_AUTH_SAML_SP_ENTITY_ID: "https://my.url.com/samlAuth/"
+      SOCIAL_AUTH_SAML_SP_PUBLIC_CERT: "{{ lookup('file', 'saml.crt') }}"
+      SOCIAL_AUTH_SAML_SP_PRIVATE_KEY: "{{ lookup('file', 'saml.key') }}"
+      SOCIAL_AUTH_SAML_ORG_INFO: {}
+      SOCIAL_AUTH_SAML_ENABLED_IDPS: {}
+
   organization:
     README:
       name: "README"
