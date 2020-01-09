@@ -1,0 +1,13 @@
+tower-cli
+organization
+{% if tower_config_organization_instance_groups.state|default('present') == 'present' %}
+associate_ig
+{% elif tower_config_organization_instance_groups.state|default('present') == 'absent' %}
+disassociate_ig
+{% endif %}
+{% if tower_config_organization.name is defined %}
+--organization {{ tower_config_organization.name | quote }}
+{% endif %}
+{% if tower_config_organization_instance_groups.name  is defined %}
+--instance-group {{ tower_config_organization_instance_groups.name | quote }}
+{% endif %}

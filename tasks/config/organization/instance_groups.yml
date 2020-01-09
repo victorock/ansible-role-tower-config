@@ -1,0 +1,5 @@
+---
+- name: "config.organization.instance_groups: [ {{ tower_config_organization_instance_groups.name }} ]"
+  command: "{{ lookup('template', 'instance-group-cli.j2') }}"
+  register: reg_instance_groups
+  when: tower_config_organization_instance_groups.name is defined

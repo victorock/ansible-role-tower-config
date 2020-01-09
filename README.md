@@ -39,6 +39,8 @@ tower_config:
     README:
       name: "README"
       description: "README"
+      instance_groups:
+        - name: "tower"
       users:
         - name: "infraops"
           password: "infraops"
