@@ -9,6 +9,10 @@
     description: "{{ tower_config_organization.description | default(omit) }}"
     state: "{{ tower_config_organization.state | default('present') }}"
 
+- name: "config.organization: Process [ custom_virtualenv ]"
+  include_tasks: "custom_virtualenv.yml"
+  when: tower_config_organization.custom_virtualenv is defined
+
 - name: "config.organization: Process [ users ]"
   when: tower_config_organization.users is defined
   include_tasks: "user.yml"

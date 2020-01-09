@@ -1,0 +1,7 @@
+tower-cli
+organization
+modify
+--custom-virtualenv {{ tower_config_organization.custom_virtualenv | default('null') }}
+{% if tower_config_organization.name is defined %}
+--name {{ tower_config_organization.name | quote }}
+{% endif %}
