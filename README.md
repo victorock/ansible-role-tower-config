@@ -35,6 +35,13 @@ tower_config:
       trial: XXXX
       eula_accepted: true
 
+    system:
+      TOWER_URL_BASE: "https://tower.example.com"
+      REMOTE_HOST_HEADERS:
+        - "HTTP_X_FORWARDED_FOR"
+        - "REMOTE_ADDR"
+        - "REMOTE_HOST"
+
   organization:
     README:
       name: "README"
