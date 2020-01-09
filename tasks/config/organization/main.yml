@@ -65,6 +65,14 @@
     loop_var: tower_config_organization_job_template
     label: "{{ tower_config_organization_job_template.name }}"
 
+- name: "config.organization: Process [ workflow_templates ]"
+  when: tower_config_organization.workflow_templates is defined
+  include_tasks: "workflow_template.yml"
+  loop: "{{ tower_config_organization.workflow_templates | default ([]) }}"
+  loop_control:
+    loop_var: tower_config_organization_workflow_template
+    label: "{{ tower_config_organization_workflow_template.name }}"
+
 ### Buggy module
 # - name: "config.organization: Process [ permissions ]"
 #   when: tower_config_organization.permissions is sequence

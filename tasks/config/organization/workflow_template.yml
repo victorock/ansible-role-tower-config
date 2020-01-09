@@ -1,0 +1,23 @@
+---
+- name: "config.organization.workflow_template: [ {{ tower_config_organization_workflow_template.name }} ]"
+  tower_workflow_template:
+  # Note: missing parameters added in 2.9, specifically ask_extra_vars
+    allow_simultaneous: "{{ tower_config_organization_workflow_template.allow_simultaneous | default(omit) }}"
+    description: "{{ tower_config_organization_workflow_template.description }}"
+    extra_vars: "{{ tower_config_organization_workflow_template.extra_vars | default(omit) }}"
+    name: "{{ tower_config_organization_workflow_template.name }}"
+    organization: "{{ tower_config_organization_workflow_template.organization | default(omit) }}"
+    schema: "{{ tower_config_organization_workflow_template.schema }}"
+    state: "{{ tower_config_organization_workflow_template.state | default(omit) }}"
+    survey: "{{ tower_config_organization_workflow_template.survey | default(omit) }}"
+    survey_enabled: "{{ tower_config_organization_workflow_template.survey_enabled | default(omit) }}"
+    tower_host: "{{ tower_config.host | default(omit) }}"
+    tower_password: "{{ tower_config.password | default(omit) }}"
+    tower_username: "{{ tower_config.username | default(omit) }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl | default(omit) }}"
+  async: 15
+  poll: 1
+  register: workflow_template_result
+  retries: 20
+  delay: 5
+  until: workflow_template_result is success
