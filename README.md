@@ -39,7 +39,7 @@ tower_config:
     README:
       name: "README"
       description: "README"
-      custom_virtualenv: "/path/to/virtualenv/readme" # or false, null, '', or unset to remove
+      custom_virtualenv: "/path/to/virtualenv/readme" # Use false, null, '', or unset this variable to remove
       users:
         - name: "infraops"
           password: "infraops"
