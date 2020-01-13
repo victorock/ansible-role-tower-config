@@ -4,6 +4,9 @@
   become: false
 
   vars:
+    # Required for: "victorock.tower_setup"
+    tower_setup_version: "3.5.4-1"
+    tower_setup_network_pips: []
     # Tower configuration
     tower_config:
       host: "localhost"
@@ -22,6 +25,12 @@
           license_type: "basic"
           subscription_name: "Red Hat Ansible Tower, Self-Support (10 Managed Nodes)"
           eula_accepted: true
+        system:
+          TOWER_URL_BASE: "https://tower.example.com"
+          REMOTE_HOST_HEADERS:
+            - "HTTP_X_FORWARDED_FOR"
+            - "REMOTE_ADDR"
+            - "REMOTE_HOST"
       organization:
         README:
           name: "Default"
