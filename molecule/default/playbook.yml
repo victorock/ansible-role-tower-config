@@ -22,6 +22,12 @@
           license_type: "basic"
           subscription_name: "Red Hat Ansible Tower, Self-Support (10 Managed Nodes)"
           eula_accepted: true
+        system:
+          TOWER_URL_BASE: "https://tower.example.com"
+          REMOTE_HOST_HEADERS:
+            - "HTTP_X_FORWARDED_FOR"
+            - "REMOTE_ADDR"
+            - "REMOTE_HOST"
       organization:
         README:
           name: "Default"
