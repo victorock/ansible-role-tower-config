@@ -1,0 +1,18 @@
+---
+- name: "config.setting.authentication: Ensure state"
+  uri:
+    url: "https://{{ tower_config.host }}/api/v2/settings/all/"
+    user: "{{ tower_config.username }}"
+    password: "{{ tower_config.password }}"
+    validate_certs: "{{ tower_config.verify_ssl | default(omit) }}"
+    force_basic_auth: true
+    headers:
+      Content-Type: "application/json"
+      Accept: "application/json"
+    method: PATCH
+    body: '{{ tower_config.setting.authentication|to_json }}'
+    body_format: "{{ tower_config.format }}"
+  register: reg_config_setting_authentication
+  when:
+    - tower_config.setting.authentication is defined
+    - tower_config.setting.authentication
