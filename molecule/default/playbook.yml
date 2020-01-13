@@ -4,6 +4,9 @@
   become: false
 
   vars:
+    # Required for: "victorock.tower_setup"
+    tower_setup_version: "3.5.4-1"
+    tower_setup_network_pips: []
     # Tower configuration
     tower_config:
       host: "localhost"
