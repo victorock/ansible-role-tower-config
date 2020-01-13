@@ -36,11 +36,24 @@ tower_config:
       eula_accepted: true
 
     authentication:
-      SOCIAL_AUTH_SAML_SP_ENTITY_ID: "https://my.url.com/samlAuth/"
-      SOCIAL_AUTH_SAML_SP_PUBLIC_CERT: "{{ lookup('file', 'saml.crt') }}"
-      SOCIAL_AUTH_SAML_SP_PRIVATE_KEY: "{{ lookup('file', 'saml.key') }}"
-      SOCIAL_AUTH_SAML_ORG_INFO: {}
-      SOCIAL_AUTH_SAML_ENABLED_IDPS: {}
+      SOCIAL_AUTH_SAML_SP_ENTITY_ID: "https://idp.example.com"
+      SOCIAL_AUTH_SAML_SP_PUBLIC_CERT: "{{ lookup('file', 'files/saml.crt') }}"
+      SOCIAL_AUTH_SAML_SP_PRIVATE_KEY: "{{ lookup('file', 'files/saml.key') }}"
+      SOCIAL_AUTH_SAML_ORG_INFO:
+        en-US:
+          url: "http://www.example.com"
+          displayname: "Example"
+          name: "example"
+      SOCIAL_AUTH_SAML_ENABLED_IDPS:
+        myidp:
+          entity_id: "https://idp.example.com"
+          url: "https://myidp.example.com/sso"
+          x509cert: "x509cert"
+          attr_user_permanent_id: name_id
+          attr_first_name: User.FirstName
+          attr_last_name: User.LastName
+          attr_username: User.email
+          attr_email: User.email
 
   organization:
     README:
