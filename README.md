@@ -35,6 +35,27 @@ tower_config:
       trial: XXXX
       eula_accepted: true
 
+    credential_type:
+      - name: "devops_credential"
+        state: present
+        description: "DevOps custom credentials"
+        inputs:
+          fields:
+            - id: username
+              type: string
+              label: Username
+              secret: false
+              multiline: false
+            - id: password
+              type: string
+              label: password
+              secret: true
+              multiline: false
+        injectors:
+          extra_vars:
+            devops_user: !unsafe "{{ username }}"
+            devops_passsword: !unsafe "{{ password }}"
+
   organization:
     README:
       name: "README"
