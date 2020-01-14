@@ -9,6 +9,14 @@
     description: "{{ tower_config_organization.description | default(omit) }}"
     state: "{{ tower_config_organization.state | default('present') }}"
 
+- name: "config.organization: Process [ instance_groups ]"
+  when: tower_config_organization.instance_groups is defined
+  include_tasks: "instance_groups.yml"
+  loop: "{{ tower_config_organization.instance_groups | default ([]) }}"
+  loop_control:
+    loop_var: tower_config_organization_instance_groups
+    label: "{{ tower_config_organization_instance_groups.name }}"
+
 - name: "config.organization: Process [ users ]"
   when: tower_config_organization.users is defined
   include_tasks: "user.yml"
