@@ -1,10 +1,12 @@
 ---
 - name: "config.organization.workflow_template: [ {{ tower_config_organization_workflow_template.name }} ]"
   tower_workflow_template:
-  # Note: missing parameters added in 2.9, specifically ask_extra_vars
+    ask_extra_vars: "{{ tower_config_organization_workflow_template.ask_extra_vars | default(omit) }}"
+    ask_inventory: "{{ tower_config_organization_workflow_template.ask_inventory | default(omit) }}"
     allow_simultaneous: "{{ tower_config_organization_workflow_template.allow_simultaneous | default(omit) }}"
     description: "{{ tower_config_organization_workflow_template.description }}"
     extra_vars: "{{ tower_config_organization_workflow_template.extra_vars | default(omit) }}"
+    inventory: "{{ tower_config_organization_workflow_template.inventory | default(omit) }}"
     name: "{{ tower_config_organization_workflow_template.name }}"
     organization: "{{ tower_config_organization_workflow_template.organization | default(omit) }}"
     schema: "{{ tower_config_organization_workflow_template.schema }}"
