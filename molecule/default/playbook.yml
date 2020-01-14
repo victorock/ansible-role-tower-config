@@ -29,6 +29,8 @@
         README:
           name: "Default"
           description: "Default"
+          instance_groups:
+            - name: "tower"
           users:
             - name: "infraops"
               password: "infraops"
