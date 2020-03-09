@@ -34,6 +34,83 @@ tower_config:
       subscription_name: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
       trial: XXXX
       eula_accepted: true
+    AUTH_LDAP_BIND_DN: "DC=example,DC=com"
+    AUTH_LDAP_BIND_PASSWORD: "somePassword"
+    AUTH_LDAP_DENY_GROUP: null
+    AUTH_LDAP_GROUP_SEARCH:
+      - "OU=Application-Permissions,OU=Groups,DC=example,DC=com"
+      - "SCOPE_SUBTREE"
+      - "(objectClass=group)"
+    AUTH_LDAP_GROUP_TYPE: NestedActiveDirectoryGroupType
+    AUTH_LDAP_GROUP_TYPE_PARAMS:
+      name_attr: "cn"
+    AUTH_LDAP_ORGANIZATION_MAP:
+      "Example Company":
+        "admins": "CN=Ansible-Tower-Admins,OU=Application-Permissions,OU=Groups,DC=example,DC=com"
+        "remove_users": true
+        "remove_admins": true
+        "users":
+           - "CN=Ansible-Tower-Linux-Engineering,OU=Application-Permissions,OU=Groups,DC=example,DC=com"
+           - "CN=Ansible-Tower-Linux-Operations,OU=Application-Permissions,OU=Groups,DC=example,DC=com"
+           - "CN=Ansible-Tower-Network-Engineering,OU=Application-Permissions,OU=Groups,DC=example,DC=com"
+           - "CN=Ansible-Tower-Network-Operations,OU=Application-Permissions,OU=Groups,DC=example,DC=com"
+           - "CN=Ansible-Tower-Windows-Engineering,OU=Application-Permissions,OU=Groups,DC=example,DC=com"
+           - "CN=Ansible-Tower-Windows-Operations,OU=Application-Permissions,OU=Groups,DC=example,DC=com"
+    AUTH_LDAP_REQUIRE_GROUP: "CN=Ansible-Tower-Users,OU=Application-Permissions,OU=Groups,DC=example,DC=com"
+    AUTH_LDAP_SERVER_URI: "ldaps://ad.example.com:636"
+    AUTH_LDAP_START_TLS: false
+    AUTH_LDAP_TEAM_MAP:
+      "Linux Engineering":
+         "organization": "README"
+         "users": "CN=Ansible-Tower-Linux-Engineering,OU=Application-Permissions,OU=Groups,DC=example,DC=com"
+         "remove": true
+      "Linux Operations":
+         "organization": "README"
+         "users": "CN=Ansible-Tower-Linux-Operations,OU=Application-Permissions,OU=Groups,DC=example,DC=com"
+         "remove": true
+      "Network Engineering":
+         "organization": "README"
+         "users": "CN=Ansible-Tower-Network-Engineering,OU=Application-Permissions,OU=Groups,DC=example,DC=com"
+         "remove": true
+      "Netzwerk Operations":
+         "organization": "README"
+         "users": "CN=Ansible-Tower-Network-Operations,OU=Application-Permissions,OU=Groups,DC=example,DC=com"
+         "remove": true
+      "Windows Engineering":
+         "organization": "README"
+         "users": "CN=Ansible-Tower-Windows-Engineering,OU=Application-Permissions,OU=Groups,DC=example,DC=com"
+         "remove": true
+      "Windows-Operations":
+         "organization": "README"
+         "users": "CN=Ansible-Tower-Windows-Operations,OU=Application-Permissions,OU=Groups,DC=example,DC=com"
+         "remove": true
+    AUTH_LDAP_USER_ATTR_MAP:
+      "first_name": "givenName"
+      "last_name": "sn"
+      "email": "mail"
+    AUTH_LDAP_USER_DN_TEMPLATE: null
+    AUTH_LDAP_USER_FLAGS_BY_GROUP:
+      "is_superuser":
+         - ""
+    AUTH_LDAP_USER_SEARCH:
+      - "OU=Accounts,DC=example,DC=com"
+      - "SCOPE_SUBTREE"
+      - "(sAMAccountName=%(user)s)"
+    AWX_PROOT_SHOW_PATHS:
+      - "/etc/ssh/ssh_known_hosts"
+    LOG_AGGREGATOR_ENABLED: "true"
+    LOG_AGGREGATOR_HOST: "log.example.com"
+    LOG_AGGREGATOR_INDIVIDUAL_FACTS: "false"
+    LOG_AGGREGATOR_LEVEL: "INFO"
+    LOG_AGGREGATOR_LOGGERS:
+      - "awx"
+      - "activity_stream"
+      - "job_events"
+      - "system_tracking"
+    LOG_AGGREGATOR_PORT: "514"
+    LOG_AGGREGATOR_PROTOCOL: "tcp"
+    LOG_AGGREGATOR_TCP_TIMEOUT: "5"
+    LOG_AGGREGATOR_TYPE: "logstash"
 
   organization:
     README:
