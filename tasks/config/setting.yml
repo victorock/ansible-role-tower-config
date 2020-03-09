@@ -2,3 +2,15 @@
 - name: "config.setting-cli: Process [ license ]"
   include_tasks: "setting/license.yml"
   when: tower_config.setting.license is defined
+
+- name: "config.setting-cli: Process [ settings ]"
+  tower_settings:
+    name: "{{ tower_config_setting.key }}"
+    value: "{{ tower_config_setting.value }}"
+  when: tower_config_setting.key != "license"
+  loop: "{{ tower_config.settings | default({}) | dict2items }}"
+  loop_control:
+    loop_var: tower_config_setting
+    label: "{{ tower_config_setting.key }}"
+  async: 15
+  poll: 1
