@@ -202,6 +202,15 @@ tower_config:
           forks: 50
           limit: "dev"
           credential: "system-linux-ssh"
+      workflow_templates:
+        - name: "Dev: workflow:helloworld"
+          description: "Dev: workflow:helloworld"
+          schema:
+            - job_template: "Dev: netops:helloworld"
+              success:
+                - job_template: "Dev: sysops:helloworld"
+              failure:
+                - job_template: "Dev: secops:helloworld"
       permissions:
         - team: "infraops"
           role: "admin"
