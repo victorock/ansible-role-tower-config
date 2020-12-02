@@ -29,6 +29,7 @@
         README:
           name: "Default"
           description: "Default"
+          custom_virtualenv: "/var/lib/awx/venv/ansible-cloud-release"
           users:
             - name: "infraops"
               password: "infraops"

@@ -1,0 +1,5 @@
+---
+- name: "config.organization.custom_virtualenv: [ {{ tower_config_organization.custom_virtualenv }} ]"
+  command: "{{ lookup('template', 'custom-virtualenv-cli.j2') }}"
+  register: reg_custom_virtualenv
+  when: tower_config_organization.custom_virtualenv is defined
