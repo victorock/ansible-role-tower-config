@@ -25,6 +25,26 @@
           license_type: "basic"
           subscription_name: "Red Hat Ansible Tower, Self-Support (10 Managed Nodes)"
           eula_accepted: true
+        credential_type:
+          - name: "devops_credential"
+            state: present
+            description: "DevOps custom credentials"
+            inputs:
+              fields:
+                - id: username
+                  type: string
+                  label: Username
+                  secret: false
+                  multiline: false
+                - id: password
+                  type: string
+                  label: password
+                  secret: true
+                  multiline: false
+            injectors:
+              extra_vars:
+                devops_user: !unsafe "{{ username }}"
+                devops_passsword: !unsafe "{{ password }}"
       organization:
         README:
           name: "Default"

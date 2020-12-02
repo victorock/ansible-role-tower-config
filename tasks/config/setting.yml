@@ -2,3 +2,11 @@
 - name: "config.setting-cli: Process [ license ]"
   include_tasks: "setting/license.yml"
   when: tower_config.setting.license is defined
+
+- name: "config.setting-cli: Process [ credential_types ]"
+  when: tower_config.setting.credential_type is defined
+  include_tasks: "setting/credential_type.yml"
+  loop: "{{ tower_config.setting.credential_type | default ([]) }}"
+  loop_control:
+    loop_var: tower_config_setting_credential_type
+    label: "{{ tower_config_setting_credential_type.name }}"
