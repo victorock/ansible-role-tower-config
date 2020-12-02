@@ -30,3 +30,7 @@
     state: "{{ tower_config_organization_job_template.state | default(omit) }}"
   async: 15
   poll: 1
+  register: job_template_result
+  retries: 20
+  delay: 5
+  until: job_template_result is success
