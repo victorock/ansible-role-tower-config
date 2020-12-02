@@ -81,3 +81,11 @@
   loop_control:
     loop_var: tower_config_organization_permission
     label: "{{ tower_config_organization_permission.team | default(tower_config_organization_permission.user) }}"
+
+- name: "config.organization: Process [ notifications ]"
+  when: tower_config_organization.notifications is defined
+  include_tasks: "notification.yml"
+  loop: "{{ tower_config_organization.notifications | default ([]) }}"
+  loop_control:
+    loop_var: tower_config_organization_notification
+    label: "{{ tower_config_organization_notification.name }}"

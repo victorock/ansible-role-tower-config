@@ -275,6 +275,11 @@ tower_config:
         - team: "secops"
           role: "admin"
           job_template: "Dev: secops:helloworld"
+      notifications:
+        - name: "webhook-example"
+          description: "Webhook notification"
+          notification_type: webhook
+          url: "https://www.example.com/webhook"
 ```
 
 Dependencies

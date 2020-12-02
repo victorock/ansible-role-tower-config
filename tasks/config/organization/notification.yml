@@ -1,0 +1,16 @@
+---
+- name: "config.organization.notification: [ {{ tower_config_organization_project.name }} ]"
+  tower_notification:
+    tower_host: "{{ tower_config.host | default(omit) }}"
+    tower_username: "{{ tower_config.username | default(omit) }}"
+    tower_password: "{{ tower_config.password | default(omit) }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl | default(omit) }}"
+    name: "{{ tower_config_organization_notification.name }}"
+    organization: "{{ tower_config_organization.name | default(omit) }}"
+    description: "{{ tower_config_organization_notification.description | default(omit) }}"
+    notification_type: "{{ tower_config_organization_notification.notification_type }}"
+    url: "{{ tower_config_organization_notification.url }}"
+    state: "{{ tower_config_organization_notification.state | default(omit) }}"
+    headers: "{{ tower_config_organization_notification.headers | default(omit) }}"
+  async: 15
+  poll: 1
