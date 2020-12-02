@@ -21,9 +21,10 @@
     tower_host: "{{ tower_config.host }}"
     tower_username: "{{ tower_config.username }}"
     tower_password: "{{ tower_config.password }}"
+    tower_verify_ssl: "{{ tower_config.verify_ssl | default(omit) }}"
     user: "{{ tower_config_organization_user.name }}"
     organization: "{{ tower_config_organization.name }}"
-    role: "member"
+    role: "{{ tower_config_organization_user.role|default('member') }}"
     state: "present"
   async: 15
   poll: 1
