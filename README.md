@@ -35,6 +35,11 @@ tower_config:
       trial: XXXX
       eula_accepted: true
 
+    proxy:
+      http_proxy: "http://172.17.0.1:3128"
+      https_proxy: "http://172.17.0.1:3128"
+      no_proxy: "localhost,127.0.0.0/8"
+
   organization:
     README:
       name: "README"
