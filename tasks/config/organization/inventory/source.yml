@@ -20,5 +20,8 @@
     source_regions: "{{ tower_config_organization_inventory_source.source_regions | default(omit) }}"
     source_script: "{{ tower_config_organization_inventory_source.source_script | default(omit) }}"
     source_vars: "{{ tower_config_organization_inventory_source.source_vars | default(omit) }}"
+    update_on_launch: "{{ tower_config_organization_inventory_source.update_on_launch | default(omit) }}"
+    update_on_project_update: "{{ tower_config_organization_inventory_source.update_on_project_update
+                              | default(omit) }}"
   async: 15
   poll: 1
